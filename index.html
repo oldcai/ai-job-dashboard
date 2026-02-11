@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Engineer Job Dashboard - Australia</title>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --border: #334155;
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --green: #4ade80;
+            --yellow: #fbbf24;
+            --red: #f87171;
+            --purple: #a78bfa;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border-bottom: 1px solid var(--border);
+        }
+        header h1 { font-size: 2.2em; margin-bottom: 8px; }
+        header h1 span { color: var(--accent); }
+        header .subtitle { color: var(--text-muted); font-size: 1.1em; }
+        header .update-time {
+            margin-top: 12px;
+            color: var(--accent);
+            font-size: 0.9em;
+            background: rgba(56,189,248,0.1);
+            display: inline-block;
+            padding: 4px 16px;
+            border-radius: 20px;
+        }
+        .market-flash {
+            background: linear-gradient(90deg, rgba(74,222,128,0.1), rgba(56,189,248,0.1));
+            border: 1px solid rgba(74,222,128,0.3);
+            border-radius: 12px;
+            padding: 16px 24px;
+            margin: 24px 0;
+            font-size: 1.05em;
+        }
+        .market-flash strong { color: var(--green); }
+        .section-title {
+            font-size: 1.5em;
+            margin: 32px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .badge {
+            font-size: 0.65em;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+        .badge-top { background: rgba(251,191,36,0.2); color: var(--yellow); }
+        .badge-extra { background: rgba(167,139,250,0.2); color: var(--purple); }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.92em;
+        }
+        th {
+            background: var(--card);
+            color: var(--accent);
+            padding: 12px 10px;
+            text-align: left;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 2px solid var(--accent);
+        }
+        td {
+            padding: 10px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+        tr:hover td { background: rgba(56,189,248,0.05); }
+        .company { font-weight: 700; color: var(--accent); }
+        .salary { color: var(--green); font-weight: 600; }
+        .score {
+            font-weight: 700;
+            font-size: 1.1em;
+            text-align: center;
+        }
+        .score-5 { color: var(--green); }
+        .score-4 { color: var(--yellow); }
+        .score-3 { color: var(--text-muted); }
+        .match-high { color: var(--green); }
+        .match-mid { color: var(--yellow); }
+        .match-low { color: var(--red); }
+        .stars { color: var(--yellow); letter-spacing: 1px; }
+        .tag {
+            display: inline-block;
+            font-size: 0.78em;
+            padding: 2px 8px;
+            border-radius: 6px;
+            margin: 1px 2px;
+        }
+        .tag-ai { background: rgba(56,189,248,0.2); color: var(--accent); }
+        .tag-sponsor { background: rgba(74,222,128,0.2); color: var(--green); }
+        .tag-visa { background: rgba(167,139,250,0.2); color: var(--purple); }
+        .tag-urgent { background: rgba(248,113,113,0.2); color: var(--red); }
+        .tag-new { background: rgba(251,191,36,0.2); color: var(--yellow); }
+
+        .top5-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin: 16px 0;
+            transition: border-color 0.2s;
+        }
+        .top5-card:hover { border-color: var(--accent); }
+        .top5-card .rank {
+            font-size: 1.8em;
+            float: left;
+            margin-right: 16px;
+            line-height: 1;
+        }
+        .top5-card h3 { font-size: 1.15em; margin-bottom: 6px; }
+        .top5-card h3 .company { margin-left: 6px; }
+        .top5-card .meta { color: var(--text-muted); font-size: 0.9em; margin-bottom: 8px; }
+        .top5-card .reason { font-size: 0.95em; }
+        .top5-card .action {
+            margin-top: 10px;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .action-plan {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 16px;
+            margin: 16px 0;
+        }
+        .action-card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid;
+        }
+        .action-card.urgent { border-left-color: var(--red); }
+        .action-card.week { border-left-color: var(--yellow); }
+        .action-card.ongoing { border-left-color: var(--green); }
+        .action-card h4 { margin-bottom: 10px; font-size: 1.05em; }
+        .action-card ul { list-style: none; }
+        .action-card li { padding: 4px 0; font-size: 0.92em; }
+        .action-card li::before { content: "→ "; color: var(--accent); }
+
+        .visa-table td, .visa-table th { padding: 10px 16px; }
+
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            font-size: 0.85em;
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 10px; }
+            header h1 { font-size: 1.5em; }
+            table { font-size: 0.82em; }
+            th, td { padding: 6px; }
+            .top5-card .rank { font-size: 1.4em; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🤖 <span>AI Engineer</span> Job Dashboard</h1>
+    <div class="subtitle">Australia · Visa Sponsorship Focus · Albert Tsai</div>
+    <div class="update-time">🕐 Last Updated: 2026-02-11 13:44 AEDT</div>
+</header>
+
+<div class="container">
+
+    <div class="market-flash">
+        📊 <strong>市场快讯：</strong> LinkedIn「Jobs on the Rise 2026」报告 — <strong>AI Engineer 是澳洲增长最快的职位</strong>，增幅 150%。当前市场需求极其旺盛。
+    </div>
+
+    <!-- TOP 10 TABLE -->
+    <h2 class="section-title">🏆 本周精选职位 Top 10 <span class="badge badge-top">按综合评分排序</span></h2>
+    <div style="overflow-x:auto;">
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>职位</th>
+                <th>公司</th>
+                <th>地点</th>
+                <th>薪资 (AUD)</th>
+                <th>来源</th>
+                <th>发布</th>
+                <th>AI相关</th>
+                <th>Sponsor</th>
+                <th>公司面</th>
+                <th>薪资✓</th>
+                <th>签证路径</th>
+                <th>总分</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td><strong>AI Engineer</strong></td>
+                <td class="company">Optiver</td>
+                <td>Sydney</td>
+                <td class="salary">$180K-$250K+</td>
+                <td>LinkedIn</td>
+                <td><span class="tag tag-new">5天前</span></td>
+                <td class="stars">★★★★★</td>
+                <td class="stars">★★★★★</td>
+                <td class="stars">★★★★★</td>
+                <td class="stars">★★★★★</td>
+                <td><span class="tag tag-visa">482→186</span></td>
+                <td class="score score-5">5.0</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td><strong>ML Engineer</strong></td>
+                <td class="company">Rokt</td>
+                <td>Sydney</td>
+                <td class="salary">$170K-$185K</td>
+                <td>LinkedIn</td>
+                <td>2周前</td>
+                <td class="stars">★★★★★</td>
+                <td class="stars">★★★★★</td>
+                <td class="stars">★★★★☆</td>
+                <td class="stars">★★★★★</td>
+                <td><span class="tag tag-visa">482→186</span></td>
+                <td class="score score-5">4.8</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td><strong>AI Engineer - AI and Data</strong></td>
+                <td class="company">EY</td>
+                <td>Sydney</td>
+                <td class="salary">$130K-$170K</td>
+                <td>LinkedIn</td>
+                <td>2周前</td>
+                <td class="stars">★★★★☆</td>
+                <td class="stars">★★★★★</td>
+                <td class="stars">★★★★★</td>
+                <td class="stars">★★★★☆</td>
+                <td><span class="tag tag-visa">482→186 直接PR</span></td>
+                <td class="score score-4">4.6</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td><strong>AI Engineer</strong></td>
+                <td class="company">Nine</td>
+                <td>North Sydney</td>
+                <td class="salary">$130K-$160K</td>
+                <td>LinkedIn</td>
+                <td>2周前</td>
+                <td class="stars">★★★★☆</td>
+                <td class="stars">★★★★★</td>
+                <td class="stars">★★★★★</td>
+                <td class="stars">★★★★☆</td>
+                <td><span class="tag tag-visa">482→186</span></td>
+                <td class="score score-4">4.6</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td><strong>AI Engineer</strong></td>
+                <td class="company">GHD</td>
+                <td>Sydney</td>
+                <td class="salary">$120K-$160K</td>
+                <td>LinkedIn</td>
+                <td>1周前</td>
+                <td class="stars">★★★★☆</td>
+                <td class="stars">★★★★★</td>
+                <td class="stars">★★★★★</td>
+                <td class="stars">★★★★☆</td>
+                <td><span class="tag tag-visa">482→186</span></td>
+                <td class="score score-4">4.6</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td><strong>AI Engineer (via Morgan McKinley)</strong></td>
+                <td class="company">未公开 (金融/咨询)</td>
+                <td>Sydney</td>
+                <td class="salary">$150K-$200K</td>
+                <td>LinkedIn</td>
+                <td><span class="tag tag-new">21hr前</span></td>
+                <td class="stars">★★★★★</td>
+                <td class="stars">★★★★☆</td>
+                <td class="stars">★★★★☆</td>
+                <td class="stars">★★★★★</td>
+                <td><span class="tag tag-visa">482→186</span></td>
+                <td class="score score-4">4.4</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td><strong>AI Engineer</strong></td>
+                <td class="company">Salient Group</td>
+                <td>Sydney</td>
+                <td class="salary">$170K-$230K</td>
+                <td>LinkedIn</td>
+                <td><span class="tag tag-new">1天前</span></td>
+                <td class="stars">★★★★★</td>
+                <td class="stars">★★★★☆</td>
+                <td class="stars">★★★☆☆</td>
+                <td class="stars">★★★★★</td>
+                <td><span class="tag tag-visa">482→186</span></td>
+                <td class="score score-4">4.2</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td><strong>AI Engineer (via Better Staff)</strong></td>
+                <td class="company">未公开客户</td>
+                <td>Sydney</td>
+                <td class="salary">$150K-$200K</td>
+                <td>LinkedIn</td>
+                <td>2周前</td>
+                <td class="stars">★★★★★</td>
+                <td class="stars">★★★★☆</td>
+                <td class="stars">★★★☆☆</td>
+                <td class="stars">★★★★★</td>
+                <td><span class="tag tag-visa">482→186</span></td>
+                <td class="score score-4">4.2</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td><strong>ML & AI Engineer</strong></td>
+                <td class="company">CreditorWatch</td>
+                <td>Sydney</td>
+                <td class="salary">$130K-$160K</td>
+                <td>LinkedIn</td>
+                <td>1周前</td>
+                <td class="stars">★★★★★</td>
+                <td class="stars">★★★★☆</td>
+                <td class="stars">★★★★☆</td>
+                <td class="stars">★★★★☆</td>
+                <td><span class="tag tag-visa">482→186</span></td>
+                <td class="score score-4">4.2</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td><strong>AI Engineer</strong></td>
+                <td class="company">Protecht</td>
+                <td>Sydney</td>
+                <td class="salary">$130K-$160K</td>
+                <td>LinkedIn</td>
+                <td>6天前</td>
+                <td class="stars">★★★★★</td>
+                <td class="stars">★★★☆☆</td>
+                <td class="stars">★★★★☆</td>
+                <td class="stars">★★★★☆</td>
+                <td><span class="tag tag-visa">482</span></td>
+                <td class="score score-3">3.8</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+
+    <!-- EXTRA TABLE -->
+    <h2 class="section-title">📌 额外值得关注 <span class="badge badge-extra">特色/较新</span></h2>
+    <div style="overflow-x:auto;">
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>职位</th>
+                <th>公司</th>
+                <th>地点</th>
+                <th>薪资</th>
+                <th>备注</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>11</td><td>ML Engineer</td><td class="company">MYOB</td><td>Sydney</td><td class="salary">$130K-$160K</td><td>澳洲老牌SaaS, 已知sponsor</td></tr>
+            <tr><td>12</td><td>Solution Architect, AI</td><td class="company">Cloudflare</td><td>Sydney</td><td class="salary">$160K-$200K</td><td>偏SA不纯AI，但大厂sponsor稳</td></tr>
+            <tr><td>13</td><td>AI Engineer (Graduate)</td><td class="company">BCG X</td><td>Sydney</td><td>$100K-$130K</td><td>薪资偏低但PR路径极好</td></tr>
+            <tr><td>14</td><td>AI Engineer</td><td class="company">Leonardo.Ai</td><td>Sydney</td><td class="salary">$140K-$180K</td><td>🔥纯GenAI公司！可能已关</td></tr>
+            <tr><td>15</td><td>AI Software Engineer</td><td class="company">ELEK Software</td><td>Sydney</td><td class="salary">$120K-$150K</td><td>电力系统+AI交叉</td></tr>
+            <tr><td>16</td><td>ML Engineer</td><td class="company">Pluralis Research</td><td>Melbourne/Sydney</td><td>未公开</td><td>AI研究公司</td></tr>
+            <tr><td>17</td><td>AI Engineer</td><td class="company">PwC Australia</td><td>Melbourne</td><td class="salary">$130K-$170K</td><td>Big4, 强sponsor</td></tr>
+            <tr><td>18</td><td>Data Scientist</td><td class="company">DoorDash</td><td>Sydney</td><td class="salary">$140K-$180K</td><td>美企sponsor稳</td></tr>
+        </tbody>
+    </table>
+    </div>
+
+    <!-- UOW SECTION -->
+    <h2 class="section-title">🏫 UOW 伍伦贡大学职位</h2>
+    <div style="overflow-x:auto;">
+    <table>
+        <thead>
+            <tr>
+                <th>职位</th>
+                <th>部门</th>
+                <th>薪资</th>
+                <th>合同</th>
+                <th>截止日期</th>
+                <th>匹配度</th>
+                <th>Sponsorship</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>⭐ Senior Cloud Engineer</strong></td>
+                <td>IMTS</td>
+                <td class="salary">$120K-$150K + 17% super</td>
+                <td>永久全职</td>
+                <td><span class="tag tag-urgent">⚠️ 2月16日</span></td>
+                <td class="match-high">🟢 高</td>
+                <td class="match-low">❌ 不提供</td>
+            </tr>
+            <tr>
+                <td>Data Scientist (ePPOC)</td>
+                <td>AHOC</td>
+                <td class="salary">$120K-$150K + 17% super</td>
+                <td>Fixed Term</td>
+                <td><span class="tag tag-urgent">⚠️ 2月15日</span></td>
+                <td class="match-mid">🟡 中</td>
+                <td class="match-low">❌ 不提供</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+
+    <!-- TOP 5 RECOMMENDATIONS -->
+    <h2 class="section-title">🏅 Top 5 优先申请推荐</h2>
+
+    <div class="top5-card">
+        <div class="rank">🥇</div>
+        <h3>AI Engineer · <span class="company">Optiver</span> · Sydney</h3>
+        <div class="meta">$180K-$250K+ · 全球顶级量化交易 · 5天前发布</div>
+        <div class="reason">薪资天花板最高，荷兰总部+全球化运营，有极强的 sponsor 传统。186 直接 PR 路径明确。你的 AI Agent/LLM 经验可展示系统设计能力。</div>
+        <div class="action">⚡ 立即申请 LinkedIn + Optiver Careers 官网</div>
+    </div>
+
+    <div class="top5-card">
+        <div class="rank">🥈</div>
+        <h3>ML Engineer · <span class="company">Rokt</span> · Sydney</h3>
+        <div class="meta">$170K-$185K · 澳洲独角兽 AdTech · 2周前发布</div>
+        <div class="reason">明确薪资 $170K+，已知频繁 sponsor。推荐算法/ML 模型，核心 AI 方向。SemanticSearch 项目直接相关。</div>
+        <div class="action">⚡ 立即申请 + 准备 ML System Design</div>
+    </div>
+
+    <div class="top5-card">
+        <div class="rank">🥉</div>
+        <h3>AI Engineer - AI and Data · <span class="company">EY</span> · Sydney</h3>
+        <div class="meta">$130K-$170K · Big4 · 2周前发布</div>
+        <div class="reason">Big4，sponsor 历史数百人，186 直接 PR 路径最稳。Enterprise AI/GenAI consulting。MedRAX 项目展示 applied AI 能力。</div>
+        <div class="action">⚡ EY 官网 + LinkedIn 双渠道申请</div>
+    </div>
+
+    <div class="top5-card">
+        <div class="rank">🏅</div>
+        <h3>AI Engineer · <span class="company">Nine</span> · North Sydney</h3>
+        <div class="meta">$130K-$160K · ASX上市媒体巨头 · 2周前发布</div>
+        <div class="reason">澳洲最大媒体公司之一，sponsor 历史丰富，186 路径清晰。Media AI/推荐/内容理解方向。</div>
+        <div class="action">⚡ LinkedIn 申请 + Nine Careers 官网</div>
+    </div>
+
+    <div class="top5-card">
+        <div class="rank">🏅</div>
+        <h3>AI Engineer · <span class="company">GHD</span> · Sydney</h3>
+        <div class="meta">$120K-$160K · 全球工程巨头 10,000+人 · 1周前发布</div>
+        <div class="reason">Sponsor 经验极其丰富，稳定性满分。工程领域 AI 应用。</div>
+        <div class="action">⚡ LinkedIn + GHD 官网申请</div>
+    </div>
+
+    <!-- ACTION PLAN -->
+    <h2 class="section-title">📋 行动计划</h2>
+    <div class="action-plan">
+        <div class="action-card urgent">
+            <h4>🔴 今日必做 (2/11)</h4>
+            <ul>
+                <li>Optiver AI Engineer → LinkedIn + 官网投递</li>
+                <li>Salient Group AI Engineer → 联系 recruiter Adam Li</li>
+                <li>Morgan McKinley AI Engineer → 联系 recruiter 获取客户信息</li>
+            </ul>
+        </div>
+        <div class="action-card week">
+            <h4>🟡 本周完成 (2/11-14)</h4>
+            <ul>
+                <li>Rokt ML Engineer → 申请 + 准备面试</li>
+                <li>EY AI Engineer → 官网 + LinkedIn</li>
+                <li>Nine AI Engineer → LinkedIn</li>
+                <li>GHD AI Engineer → LinkedIn + 官网</li>
+                <li>CreditorWatch ML & AI Engineer</li>
+                <li>Protecht AI Engineer</li>
+                <li>Leonardo.Ai → 确认是否仍在招</li>
+            </ul>
+        </div>
+        <div class="action-card ongoing">
+            <h4>🟢 持续优化</h4>
+            <ul>
+                <li>更新 LinkedIn headline: AI Engineer | LLM/Agent Systems</li>
+                <li>为每个申请定制 cover letter</li>
+                <li>设置 LinkedIn "Open to Work" (仅 recruiters)</li>
+                <li>Seek 设置自动提醒</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- VISA PATHWAYS -->
+    <h2 class="section-title">🔑 签证路径分析</h2>
+    <div style="overflow-x:auto;">
+    <table class="visa-table">
+        <thead>
+            <tr>
+                <th>路径</th>
+                <th>适用公司</th>
+                <th>时间线</th>
+                <th>优先级</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>482 → 186 直接PR</strong></td>
+                <td>Optiver, EY, Nine, GHD, Rokt, MYOB</td>
+                <td>2年482 → 申请186 (2028)</td>
+                <td class="stars">★★★★★ 最佳</td>
+            </tr>
+            <tr>
+                <td><strong>482 Specialist Skills</strong></td>
+                <td>薪资≥$135K 的职位</td>
+                <td>直接4年签 → 186</td>
+                <td class="stars">★★★★★ 大多数目标薪资达标</td>
+            </tr>
+            <tr>
+                <td><strong>494 Regional</strong></td>
+                <td>Wollongong 机会</td>
+                <td>3年 → 191 PR</td>
+                <td class="stars">★★★☆☆ 备选</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    <div class="market-flash" style="border-color: rgba(248,113,113,0.3); background: linear-gradient(90deg, rgba(248,113,113,0.1), rgba(251,191,36,0.1));">
+        ⏰ <strong>时间紧迫性：</strong> 485签证到期 <strong>2027-12-01</strong> → 还有约 22 个月。理想时间线：2026 Q1 拿 offer → Q2 启动 482 → 2028 申请 186。<strong>最迟需在 2027 年中之前启动 482 申请。</strong>
+    </div>
+
+</div>
+
+<div class="footer">
+    <p>🤖 Generated by OpenClaw AI · Data from LinkedIn & Seek & UOW Careers</p>
+    <p>Albert Tsai · AI Engineer · 485 Visa → 2027-12-01</p>
+    <p style="margin-top: 8px;">下次更新：2026-02-12 10:00 AEDT (自动)</p>
+</div>
+
+</body>
+</html>
