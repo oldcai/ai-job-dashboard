@@ -1,0 +1,132 @@
+{
+  "Rokt": {
+    "match": "ROKT PTY LIMITED",
+    "verified": true,
+    "source": "gov_sbs"
+  },
+  "EY": {
+    "match": "ERNST & YOUNG SERVICES PTY LIMITED",
+    "verified": true,
+    "source": "gov_sbs"
+  },
+  "GHD": {
+    "match": "GHD SERVICES PTY LTD",
+    "verified": true,
+    "source": "gov_sbs"
+  },
+  "Nine": {
+    "match": null,
+    "verified": false,
+    "source": null,
+    "note": "Not in gov SBS list but in GitHub community list"
+  },
+  "MYOB": {
+    "match": "MYOB AUSTRALIA PTY LTD",
+    "verified": true,
+    "source": "gov_sbs"
+  },
+  "Nearmap": {
+    "match": "NEARMAP AUSTRALIA PTY LTD",
+    "verified": true,
+    "source": "gov_sbs"
+  },
+  "Leonardo.Ai": {
+    "match": null,
+    "verified": false,
+    "source": null,
+    "note": "Leonardo Australia is defence, not Leonardo.Ai (startup)"
+  },
+  "DoorDash": {
+    "match": "DOORDASH TECHNOLOGIES AUSTRALIA PTY LTD",
+    "verified": true,
+    "source": "gov_sbs"
+  },
+  "CreditorWatch": {
+    "match": null,
+    "verified": false,
+    "source": null
+  },
+  "Protecht": {
+    "match": null,
+    "verified": false,
+    "source": null
+  },
+  "BCG": {
+    "match": "THE BOSTON CONSULTING GROUP PTY LTD",
+    "verified": true,
+    "source": "gov_sbs"
+  },
+  "Optiver": {
+    "match": "OPTIVER PTY. LIMITED",
+    "verified": true,
+    "source": "gov_sbs"
+  },
+  "Salient Group": {
+    "match": null,
+    "verified": false,
+    "source": null
+  },
+  "Morgan McKinley": {
+    "match": null,
+    "verified": false,
+    "source": null,
+    "note": "Recruitment agency"
+  },
+  "Better Staff": {
+    "match": null,
+    "verified": false,
+    "source": null,
+    "note": "Recruitment agency"
+  },
+  "Hydrogen Group": {
+    "match": null,
+    "verified": false,
+    "source": null,
+    "note": "Recruitment agency"
+  },
+  "Lendi Group": {
+    "match": null,
+    "verified": false,
+    "source": null,
+    "note": "In GitHub community list"
+  },
+  "ELEK Software": {
+    "match": null,
+    "verified": false,
+    "source": null,
+    "note": "Elekta is different company"
+  },
+  "Pluralis Research": {
+    "match": null,
+    "verified": false,
+    "source": null
+  },
+  "TheDriveGroup": {
+    "match": null,
+    "verified": false,
+    "source": null,
+    "note": "Recruitment agency"
+  },
+  "Talent Insights Group": {
+    "match": null,
+    "verified": false,
+    "source": null,
+    "note": "Recruitment agency"
+  },
+  "Macquarie University": {
+    "match": "MACQUARIE UNIVERSITY",
+    "verified": true,
+    "source": "gov_sbs"
+  },
+  "Precision Sourcing": {
+    "match": null,
+    "verified": false,
+    "source": null,
+    "note": "Recruitment agency"
+  },
+  "Fyndr Group": {
+    "match": null,
+    "verified": false,
+    "source": null
+  }
+}
