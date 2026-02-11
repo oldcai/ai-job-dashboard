@@ -463,23 +463,23 @@
 <!-- KPI STRIP -->
 <div class="kpi-strip">
     <div class="kpi">
-        <div class="value" style="color: var(--accent);" id="kpi-total"><!--KPI_TOTAL-->20</div>
+        <div class="value" style="color: var(--accent);" id="kpi-total">2020</div>
         <div class="label">职位总数</div>
     </div>
     <div class="kpi">
-        <div class="value" style="color: var(--green);" id="kpi-new"><!--KPI_NEW-->7</div>
+        <div class="value" style="color: var(--green);" id="kpi-new">207</div>
         <div class="label">今日新增</div>
     </div>
     <div class="kpi">
-        <div class="value" style="color: var(--yellow);" id="kpi-avg-score"><!--KPI_AVG-->3.8</div>
+        <div class="value" style="color: var(--yellow);" id="kpi-avg-score">4.13.8</div>
         <div class="label">平均评分</div>
     </div>
     <div class="kpi">
-        <div class="value" style="color: var(--purple);" id="kpi-sponsor"><!--KPI_SPONSOR--></div>
+        <div class="value" style="color: var(--purple);" id="kpi-sponsor">1214</div>
         <div class="label">可Sponsor</div>
     </div>
     <div class="kpi">
-        <div class="value" style="color: var(--orange);" id="kpi-high-salary"><!--KPI_HIGH--></div>
+        <div class="value" style="color: var(--orange);" id="kpi-high-salary">166</div>
         <div class="label">$150K+</div>
     </div>
 </div>
@@ -488,11 +488,11 @@
 
     <!-- MARKET FLASH -->
     <div class="alert-box alert-info" id="market-flash">
-        📊 <strong>市场快讯：</strong><!--MARKET_FLASH-->
+        📊 <strong>市场快讯：</strong>LinkedIn 搜索显示 Sydney 有 <strong>353 个 AI Engineer 职位</strong>在招。Nearmap 新开 <strong>Agentic AI</strong> 方向 ML Engineer，与你的 AI Agent 经验高度匹配。Lendi Group、Morgan McKinley 今日有新职位发布。澳洲AI工程师市场持续火热，2026年2月LinkedIn显示Sydney地区有353+个AI Engineer职位，Seek有1232+个相关岗位。大型咨询公司（EY, PwC, BCG, McKinsey/QuantumBlack）和科技公司（Rokt, Nearmap, Leonardo.Ai, Nine）大量招聘AI人才。平均薪资$137K-$150K，高级职位可达$200K+。Agentic AI和RAG方向成为最热门需求，与Albert的技能栈高度匹配。多家大型企业有visa sponsorship历史记录，当前是申请的黄金窗口期。
     </div>
 
     <!-- SEARCH + FILTER -->
-    <h2 class="section-title">🏆 职位列表 <span class="badge badge-count" id="job-count-badge"><!--JOB_COUNT--> 个职位</span></h2>
+    <h2 class="section-title">🏆 职位列表 <span class="badge badge-count" id="job-count-badge">2020 个职位</span></h2>
     <input type="text" class="search-box" placeholder="🔍 搜索职位、公司、地点..." oninput="filterJobs(this.value)" id="search-input">
     <div class="filters" id="filter-bar">
         <button class="filter-btn active" onclick="filterSource('all', this)">全部</button>
@@ -506,25 +506,563 @@
 
     <!-- JOB LIST (populated by template data) -->
     <div class="job-list" id="job-list">
-        <!--JOB_CARDS-->
+        <div class="job-card" data-source="linkedin" data-score="4.8" data-salary-max="185" data-is-new="true">
+    <div class="rank top3">1</div>
+    <div class="job-info">
+        <div class="title-row">
+            <span class="job-title"><a href="https://au.linkedin.com/jobs/view/machine-learning-engineer-at-rokt-4341139722" target="_blank" rel="noopener">Machine Learning Engineer</a></span>
+            <span class="company-name">Rokt</span>
+        </div>
+        <div class="meta-row">
+            <span class="tag tag-location">📍 Sydney</span>
+            <span class="tag tag-salary">$170K-$185K</span>
+            <span class="tag tag-source">Linkedin</span>
+            <span class="tag tag-days">2周前</span>
+            <span class="tag tag-new">🆕 新增</span>
+            <span class="tag tag-visa">482→186</span>
+        </div>
+    </div>
+    <div class="job-scores">
+        <div class="score-pill"><span class="score-val score-5">5</span><span class="score-label">AI</span></div>
+        <div class="score-pill"><span class="score-val score-5">5</span><span class="score-label">担保</span></div>
+        <div class="score-pill"><span class="score-val score-4">4</span><span class="score-label">公司</span></div>
+        <div class="score-pill"><span class="score-val score-5">5</span><span class="score-label">薪资</span></div>
+        <div class="total-score high"><span class="score-val">4.8</span><span class="score-label">总分</span></div>
+    </div>
+</div>
+<div class="job-card" data-source="linkedin" data-score="4.8" data-salary-max="190" data-is-new="true">
+    <div class="rank top3">2</div>
+    <div class="job-info">
+        <div class="title-row">
+            <span class="job-title"><a href="https://au.linkedin.com/jobs/view/machine-learning-engineer-agentic-ai-at-nearmap-4365383682" target="_blank" rel="noopener">Machine Learning Engineer - Agentic AI</a></span>
+            <span class="company-name">Nearmap</span>
+        </div>
+        <div class="meta-row">
+            <span class="tag tag-location">📍 Greater Sydney Area</span>
+            <span class="tag tag-salary">$150K-$190K</span>
+            <span class="tag tag-source">Linkedin</span>
+            <span class="tag tag-days">2周前</span>
+            <span class="tag tag-new">🆕 新增</span>
+            <span class="tag tag-visa">482→186</span>
+        </div>
+    </div>
+    <div class="job-scores">
+        <div class="score-pill"><span class="score-val score-5">5</span><span class="score-label">AI</span></div>
+        <div class="score-pill"><span class="score-val score-5">5</span><span class="score-label">担保</span></div>
+        <div class="score-pill"><span class="score-val score-4">4</span><span class="score-label">公司</span></div>
+        <div class="score-pill"><span class="score-val score-5">5</span><span class="score-label">薪资</span></div>
+        <div class="total-score high"><span class="score-val">4.8</span><span class="score-label">总分</span></div>
+    </div>
+</div>
+<div class="job-card" data-source="linkedin" data-score="4.5" data-salary-max="200" data-is-new="true">
+    <div class="rank top3">3</div>
+    <div class="job-info">
+        <div class="title-row">
+            <span class="job-title"><a href="https://au.linkedin.com/jobs/view/artificial-intelligence-engineer-at-morgan-mckinley-4370613497" target="_blank" rel="noopener">Artificial Intelligence Engineer</a></span>
+            <span class="company-name">Morgan McKinley</span>
+        </div>
+        <div class="meta-row">
+            <span class="tag tag-location">📍 Sydney</span>
+            <span class="tag tag-salary">$150K-$200K</span>
+            <span class="tag tag-source">Linkedin</span>
+            <span class="tag tag-days">1天前</span>
+            <span class="tag tag-new">🆕 新增</span>
+            <span class="tag tag-visa">482→186</span>
+        </div>
+    </div>
+    <div class="job-scores">
+        <div class="score-pill"><span class="score-val score-5">5</span><span class="score-label">AI</span></div>
+        <div class="score-pill"><span class="score-val score-4">4</span><span class="score-label">担保</span></div>
+        <div class="score-pill"><span class="score-val score-4">4</span><span class="score-label">公司</span></div>
+        <div class="score-pill"><span class="score-val score-5">5</span><span class="score-label">薪资</span></div>
+        <div class="total-score high"><span class="score-val">4.5</span><span class="score-label">总分</span></div>
+    </div>
+</div>
+<div class="job-card" data-source="linkedin" data-score="4.5" data-salary-max="170" data-is-new="true">
+    <div class="rank">4</div>
+    <div class="job-info">
+        <div class="title-row">
+            <span class="job-title"><a href="https://au.linkedin.com/jobs/view/ai-engineer-ai-and-data-at-ey-4351142753" target="_blank" rel="noopener">AI Engineer - AI and Data</a></span>
+            <span class="company-name">EY</span>
+        </div>
+        <div class="meta-row">
+            <span class="tag tag-location">📍 Sydney</span>
+            <span class="tag tag-salary">$130K-$170K</span>
+            <span class="tag tag-source">Linkedin</span>
+            <span class="tag tag-days">2周前</span>
+            <span class="tag tag-new">🆕 新增</span>
+            <span class="tag tag-visa">482→186 直接PR</span>
+        </div>
+    </div>
+    <div class="job-scores">
+        <div class="score-pill"><span class="score-val score-4">4</span><span class="score-label">AI</span></div>
+        <div class="score-pill"><span class="score-val score-5">5</span><span class="score-label">担保</span></div>
+        <div class="score-pill"><span class="score-val score-5">5</span><span class="score-label">公司</span></div>
+        <div class="score-pill"><span class="score-val score-4">4</span><span class="score-label">薪资</span></div>
+        <div class="total-score high"><span class="score-val">4.5</span><span class="score-label">总分</span></div>
+    </div>
+</div>
+<div class="job-card" data-source="linkedin" data-score="4.5" data-salary-max="160" data-is-new="true">
+    <div class="rank">5</div>
+    <div class="job-info">
+        <div class="title-row">
+            <span class="job-title"><a href="https://au.linkedin.com/jobs/view/ai-engineer-at-ghd-4283016199" target="_blank" rel="noopener">AI Engineer</a></span>
+            <span class="company-name">GHD</span>
+        </div>
+        <div class="meta-row">
+            <span class="tag tag-location">📍 Sydney</span>
+            <span class="tag tag-salary">$120K-$160K</span>
+            <span class="tag tag-source">Linkedin</span>
+            <span class="tag tag-days">1周前</span>
+            <span class="tag tag-new">🆕 新增</span>
+            <span class="tag tag-visa">482→186</span>
+        </div>
+    </div>
+    <div class="job-scores">
+        <div class="score-pill"><span class="score-val score-4">4</span><span class="score-label">AI</span></div>
+        <div class="score-pill"><span class="score-val score-5">5</span><span class="score-label">担保</span></div>
+        <div class="score-pill"><span class="score-val score-5">5</span><span class="score-label">公司</span></div>
+        <div class="score-pill"><span class="score-val score-4">4</span><span class="score-label">薪资</span></div>
+        <div class="total-score high"><span class="score-val">4.5</span><span class="score-label">总分</span></div>
+    </div>
+</div>
+<div class="job-card" data-source="linkedin" data-score="4.3" data-salary-max="230" data-is-new="true">
+    <div class="rank">6</div>
+    <div class="job-info">
+        <div class="title-row">
+            <span class="job-title"><a href="https://au.linkedin.com/jobs/view/ai-engineer-at-salient-group-4370602862" target="_blank" rel="noopener">AI Engineer</a></span>
+            <span class="company-name">Salient Group</span>
+        </div>
+        <div class="meta-row">
+            <span class="tag tag-location">📍 Sydney</span>
+            <span class="tag tag-salary">$170K-$230K</span>
+            <span class="tag tag-source">Linkedin</span>
+            <span class="tag tag-days">1天前</span>
+            <span class="tag tag-new">🆕 新增</span>
+            <span class="tag tag-visa">482→186</span>
+        </div>
+    </div>
+    <div class="job-scores">
+        <div class="score-pill"><span class="score-val score-5">5</span><span class="score-label">AI</span></div>
+        <div class="score-pill"><span class="score-val score-4">4</span><span class="score-label">担保</span></div>
+        <div class="score-pill"><span class="score-val score-3">3</span><span class="score-label">公司</span></div>
+        <div class="score-pill"><span class="score-val score-5">5</span><span class="score-label">薪资</span></div>
+        <div class="total-score mid"><span class="score-val">4.3</span><span class="score-label">总分</span></div>
+    </div>
+</div>
+<div class="job-card" data-source="linkedin" data-score="4.3" data-salary-max="130" data-is-new="true">
+    <div class="rank">7</div>
+    <div class="job-info">
+        <div class="title-row">
+            <span class="job-title"><a href="https://au.linkedin.com/jobs/view/ai-engineer-consulting-graduate-bcg-x-at-boston-consulting-group-bcg-4320969013" target="_blank" rel="noopener">AI Engineer - Consulting (Graduate), BCG X</a></span>
+            <span class="company-name">Boston Consulting Group (BCG)</span>
+        </div>
+        <div class="meta-row">
+            <span class="tag tag-location">📍 Sydney</span>
+            <span class="tag tag-salary">$100K-$130K</span>
+            <span class="tag tag-source">Linkedin</span>
+            <span class="tag tag-days">2周前</span>
+            <span class="tag tag-new">🆕 新增</span>
+            <span class="tag tag-visa">482→186</span>
+        </div>
+    </div>
+    <div class="job-scores">
+        <div class="score-pill"><span class="score-val score-4">4</span><span class="score-label">AI</span></div>
+        <div class="score-pill"><span class="score-val score-5">5</span><span class="score-label">担保</span></div>
+        <div class="score-pill"><span class="score-val score-5">5</span><span class="score-label">公司</span></div>
+        <div class="score-pill"><span class="score-val score-3">3</span><span class="score-label">薪资</span></div>
+        <div class="total-score mid"><span class="score-val">4.3</span><span class="score-label">总分</span></div>
+    </div>
+</div>
+<div class="job-card" data-source="linkedin" data-score="4.3" data-salary-max="160" data-is-new="true">
+    <div class="rank">8</div>
+    <div class="job-info">
+        <div class="title-row">
+            <span class="job-title"><a href="https://au.linkedin.com/jobs/view/machine-learning-engineer-at-myob-4368871725" target="_blank" rel="noopener">Machine Learning Engineer</a></span>
+            <span class="company-name">MYOB</span>
+        </div>
+        <div class="meta-row">
+            <span class="tag tag-location">📍 Sydney</span>
+            <span class="tag tag-salary">$130K-$160K</span>
+            <span class="tag tag-source">Linkedin</span>
+            <span class="tag tag-days">1周前</span>
+            <span class="tag tag-new">🆕 新增</span>
+            <span class="tag tag-visa">482→186</span>
+        </div>
+    </div>
+    <div class="job-scores">
+        <div class="score-pill"><span class="score-val score-4">4</span><span class="score-label">AI</span></div>
+        <div class="score-pill"><span class="score-val score-5">5</span><span class="score-label">担保</span></div>
+        <div class="score-pill"><span class="score-val score-4">4</span><span class="score-label">公司</span></div>
+        <div class="score-pill"><span class="score-val score-4">4</span><span class="score-label">薪资</span></div>
+        <div class="total-score mid"><span class="score-val">4.3</span><span class="score-label">总分</span></div>
+    </div>
+</div>
+<div class="job-card" data-source="linkedin" data-score="4.3" data-salary-max="200" data-is-new="true">
+    <div class="rank">9</div>
+    <div class="job-info">
+        <div class="title-row">
+            <span class="job-title"><a href="https://au.linkedin.com/jobs/view/artificial-intelligence-engineer-at-better-staff-4366409242" target="_blank" rel="noopener">Artificial Intelligence Engineer</a></span>
+            <span class="company-name">Better Staff</span>
+        </div>
+        <div class="meta-row">
+            <span class="tag tag-location">📍 Sydney</span>
+            <span class="tag tag-salary">$150K-$200K</span>
+            <span class="tag tag-source">Linkedin</span>
+            <span class="tag tag-days">2周前</span>
+            <span class="tag tag-new">🆕 新增</span>
+            <span class="tag tag-visa">482→186</span>
+        </div>
+    </div>
+    <div class="job-scores">
+        <div class="score-pill"><span class="score-val score-5">5</span><span class="score-label">AI</span></div>
+        <div class="score-pill"><span class="score-val score-4">4</span><span class="score-label">担保</span></div>
+        <div class="score-pill"><span class="score-val score-3">3</span><span class="score-label">公司</span></div>
+        <div class="score-pill"><span class="score-val score-5">5</span><span class="score-label">薪资</span></div>
+        <div class="total-score mid"><span class="score-val">4.3</span><span class="score-label">总分</span></div>
+    </div>
+</div>
+<div class="job-card" data-source="linkedin" data-score="4.3" data-salary-max="160" data-is-new="true">
+    <div class="rank">10</div>
+    <div class="job-info">
+        <div class="title-row">
+            <span class="job-title"><a href="https://au.linkedin.com/jobs/view/ml-ai-engineer-at-creditorwatch-4368411119" target="_blank" rel="noopener">ML & AI Engineer</a></span>
+            <span class="company-name">CreditorWatch</span>
+        </div>
+        <div class="meta-row">
+            <span class="tag tag-location">📍 Sydney</span>
+            <span class="tag tag-salary">$130K-$160K</span>
+            <span class="tag tag-source">Linkedin</span>
+            <span class="tag tag-days">1周前</span>
+            <span class="tag tag-new">🆕 新增</span>
+            <span class="tag tag-visa">482→186</span>
+        </div>
+    </div>
+    <div class="job-scores">
+        <div class="score-pill"><span class="score-val score-5">5</span><span class="score-label">AI</span></div>
+        <div class="score-pill"><span class="score-val score-4">4</span><span class="score-label">担保</span></div>
+        <div class="score-pill"><span class="score-val score-4">4</span><span class="score-label">公司</span></div>
+        <div class="score-pill"><span class="score-val score-4">4</span><span class="score-label">薪资</span></div>
+        <div class="total-score mid"><span class="score-val">4.3</span><span class="score-label">总分</span></div>
+    </div>
+</div>
+<div class="job-card" data-source="linkedin" data-score="4.3" data-salary-max="180" data-is-new="true">
+    <div class="rank">11</div>
+    <div class="job-info">
+        <div class="title-row">
+            <span class="job-title"><a href="https://au.linkedin.com/jobs/view/data-scientist-at-doordash-4302861025" target="_blank" rel="noopener">Data Scientist</a></span>
+            <span class="company-name">DoorDash</span>
+        </div>
+        <div class="meta-row">
+            <span class="tag tag-location">📍 Sydney</span>
+            <span class="tag tag-salary">$140K-$180K</span>
+            <span class="tag tag-source">Linkedin</span>
+            <span class="tag tag-days">1周前</span>
+            <span class="tag tag-new">🆕 新增</span>
+            <span class="tag tag-visa">482→186</span>
+        </div>
+    </div>
+    <div class="job-scores">
+        <div class="score-pill"><span class="score-val score-3">3</span><span class="score-label">AI</span></div>
+        <div class="score-pill"><span class="score-val score-5">5</span><span class="score-label">担保</span></div>
+        <div class="score-pill"><span class="score-val score-5">5</span><span class="score-label">公司</span></div>
+        <div class="score-pill"><span class="score-val score-4">4</span><span class="score-label">薪资</span></div>
+        <div class="total-score mid"><span class="score-val">4.3</span><span class="score-label">总分</span></div>
+    </div>
+</div>
+<div class="job-card" data-source="linkedin" data-score="4.0" data-salary-max="160" data-is-new="true">
+    <div class="rank">12</div>
+    <div class="job-info">
+        <div class="title-row">
+            <span class="job-title"><a href="https://au.linkedin.com/jobs/view/ai-engineer-at-protecht-4369030727" target="_blank" rel="noopener">AI Engineer</a></span>
+            <span class="company-name">Protecht</span>
+        </div>
+        <div class="meta-row">
+            <span class="tag tag-location">📍 Sydney</span>
+            <span class="tag tag-salary">$130K-$160K</span>
+            <span class="tag tag-source">Linkedin</span>
+            <span class="tag tag-days">1周前</span>
+            <span class="tag tag-new">🆕 新增</span>
+            <span class="tag tag-visa">482</span>
+        </div>
+    </div>
+    <div class="job-scores">
+        <div class="score-pill"><span class="score-val score-5">5</span><span class="score-label">AI</span></div>
+        <div class="score-pill"><span class="score-val score-3">3</span><span class="score-label">担保</span></div>
+        <div class="score-pill"><span class="score-val score-4">4</span><span class="score-label">公司</span></div>
+        <div class="score-pill"><span class="score-val score-4">4</span><span class="score-label">薪资</span></div>
+        <div class="total-score mid"><span class="score-val">4.0</span><span class="score-label">总分</span></div>
+    </div>
+</div>
+<div class="job-card" data-source="linkedin" data-score="3.8" data-salary-max="180" data-is-new="true">
+    <div class="rank">13</div>
+    <div class="job-info">
+        <div class="title-row">
+            <span class="job-title"><a href="https://au.linkedin.com/jobs/view/machine-learning-engineer-at-hydrogen-group-4370932976" target="_blank" rel="noopener">Machine Learning Engineer</a></span>
+            <span class="company-name">Hydrogen Group</span>
+        </div>
+        <div class="meta-row">
+            <span class="tag tag-location">📍 Sydney</span>
+            <span class="tag tag-salary">$140K-$180K</span>
+            <span class="tag tag-source">Linkedin</span>
+            <span class="tag tag-days">1天前</span>
+            <span class="tag tag-new">🆕 新增</span>
+            <span class="tag tag-visa">482</span>
+        </div>
+    </div>
+    <div class="job-scores">
+        <div class="score-pill"><span class="score-val score-5">5</span><span class="score-label">AI</span></div>
+        <div class="score-pill"><span class="score-val score-3">3</span><span class="score-label">担保</span></div>
+        <div class="score-pill"><span class="score-val score-3">3</span><span class="score-label">公司</span></div>
+        <div class="score-pill"><span class="score-val score-4">4</span><span class="score-label">薪资</span></div>
+        <div class="total-score mid"><span class="score-val">3.8</span><span class="score-label">总分</span></div>
+    </div>
+</div>
+<div class="job-card" data-source="linkedin" data-score="3.8" data-salary-max="180" data-is-new="true">
+    <div class="rank">14</div>
+    <div class="job-info">
+        <div class="title-row">
+            <span class="job-title"><a href="https://au.linkedin.com/jobs/view/ai-engineer-at-leonardo-ai-4339209927" target="_blank" rel="noopener">AI Engineer</a></span>
+            <span class="company-name">Leonardo.Ai</span>
+        </div>
+        <div class="meta-row">
+            <span class="tag tag-location">📍 Sydney</span>
+            <span class="tag tag-salary">$140K-$180K</span>
+            <span class="tag tag-source">Linkedin</span>
+            <span class="tag tag-days">2个月前</span>
+            <span class="tag tag-new">🆕 新增</span>
+            <span class="tag tag-visa">482</span>
+        </div>
+    </div>
+    <div class="job-scores">
+        <div class="score-pill"><span class="score-val score-5">5</span><span class="score-label">AI</span></div>
+        <div class="score-pill"><span class="score-val score-3">3</span><span class="score-label">担保</span></div>
+        <div class="score-pill"><span class="score-val score-3">3</span><span class="score-label">公司</span></div>
+        <div class="score-pill"><span class="score-val score-4">4</span><span class="score-label">薪资</span></div>
+        <div class="total-score mid"><span class="score-val">3.8</span><span class="score-label">总分</span></div>
+    </div>
+</div>
+<div class="job-card" data-source="linkedin" data-score="3.8" data-salary-max="170" data-is-new="true">
+    <div class="rank">15</div>
+    <div class="job-info">
+        <div class="title-row">
+            <span class="job-title"><a href="https://au.linkedin.com/jobs/view/machine-learning-engineer-at-thedrivegroup-4354883072" target="_blank" rel="noopener">Machine Learning Engineer</a></span>
+            <span class="company-name">TheDriveGroup</span>
+        </div>
+        <div class="meta-row">
+            <span class="tag tag-location">📍 Sydney</span>
+            <span class="tag tag-salary">$130K-$170K</span>
+            <span class="tag tag-source">Linkedin</span>
+            <span class="tag tag-days">4周前</span>
+            <span class="tag tag-new">🆕 新增</span>
+            <span class="tag tag-visa">482</span>
+        </div>
+    </div>
+    <div class="job-scores">
+        <div class="score-pill"><span class="score-val score-5">5</span><span class="score-label">AI</span></div>
+        <div class="score-pill"><span class="score-val score-3">3</span><span class="score-label">担保</span></div>
+        <div class="score-pill"><span class="score-val score-3">3</span><span class="score-label">公司</span></div>
+        <div class="score-pill"><span class="score-val score-4">4</span><span class="score-label">薪资</span></div>
+        <div class="total-score mid"><span class="score-val">3.8</span><span class="score-label">总分</span></div>
+    </div>
+</div>
+<div class="job-card" data-source="linkedin" data-score="3.8" data-salary-max="180" data-is-new="true">
+    <div class="rank">16</div>
+    <div class="job-info">
+        <div class="title-row">
+            <span class="job-title"><a href="https://au.linkedin.com/jobs/view/machine-learning-engineer-at-talent-insights-group-4360449109" target="_blank" rel="noopener">Machine Learning Engineer</a></span>
+            <span class="company-name">Talent Insights Group</span>
+        </div>
+        <div class="meta-row">
+            <span class="tag tag-location">📍 Greater Sydney Area</span>
+            <span class="tag tag-salary">$140K-$180K</span>
+            <span class="tag tag-source">Linkedin</span>
+            <span class="tag tag-days">3周前</span>
+            <span class="tag tag-new">🆕 新增</span>
+            <span class="tag tag-visa">482</span>
+        </div>
+    </div>
+    <div class="job-scores">
+        <div class="score-pill"><span class="score-val score-5">5</span><span class="score-label">AI</span></div>
+        <div class="score-pill"><span class="score-val score-3">3</span><span class="score-label">担保</span></div>
+        <div class="score-pill"><span class="score-val score-3">3</span><span class="score-label">公司</span></div>
+        <div class="score-pill"><span class="score-val score-4">4</span><span class="score-label">薪资</span></div>
+        <div class="total-score mid"><span class="score-val">3.8</span><span class="score-label">总分</span></div>
+    </div>
+</div>
+<div class="job-card" data-source="linkedin" data-score="3.5" data-salary-max="0" data-is-new="true">
+    <div class="rank">17</div>
+    <div class="job-info">
+        <div class="title-row">
+            <span class="job-title"><a href="https://au.linkedin.com/jobs/view/machine-learning-engineer-at-pluralis-research-4343624436" target="_blank" rel="noopener">Machine Learning Engineer</a></span>
+            <span class="company-name">Pluralis Research</span>
+        </div>
+        <div class="meta-row">
+            <span class="tag tag-location">📍 Sydney</span>
+            <span class="tag tag-source">薪资未公开</span>
+            <span class="tag tag-source">Linkedin</span>
+            <span class="tag tag-days">4周前</span>
+            <span class="tag tag-new">🆕 新增</span>
+            <span class="tag tag-visa">482</span>
+        </div>
+    </div>
+    <div class="job-scores">
+        <div class="score-pill"><span class="score-val score-5">5</span><span class="score-label">AI</span></div>
+        <div class="score-pill"><span class="score-val score-3">3</span><span class="score-label">担保</span></div>
+        <div class="score-pill"><span class="score-val score-3">3</span><span class="score-label">公司</span></div>
+        <div class="score-pill"><span class="score-val score-3">3</span><span class="score-label">薪资</span></div>
+        <div class="total-score mid"><span class="score-val">3.5</span><span class="score-label">总分</span></div>
+    </div>
+</div>
+<div class="job-card" data-source="linkedin" data-score="3.3" data-salary-max="120" data-is-new="true">
+    <div class="rank">18</div>
+    <div class="job-info">
+        <div class="title-row">
+            <span class="job-title"><a href="https://au.linkedin.com/jobs/view/junior-ai-engineer-at-lendi-group-4342787050" target="_blank" rel="noopener">Junior AI Engineer</a></span>
+            <span class="company-name">Lendi Group</span>
+        </div>
+        <div class="meta-row">
+            <span class="tag tag-location">📍 Sydney</span>
+            <span class="tag tag-salary">$90K-$120K</span>
+            <span class="tag tag-source">Linkedin</span>
+            <span class="tag tag-days">1天前</span>
+            <span class="tag tag-new">🆕 新增</span>
+            <span class="tag tag-visa">482</span>
+        </div>
+    </div>
+    <div class="job-scores">
+        <div class="score-pill"><span class="score-val score-4">4</span><span class="score-label">AI</span></div>
+        <div class="score-pill"><span class="score-val score-3">3</span><span class="score-label">担保</span></div>
+        <div class="score-pill"><span class="score-val score-4">4</span><span class="score-label">公司</span></div>
+        <div class="score-pill"><span class="score-val score-2">2</span><span class="score-label">薪资</span></div>
+        <div class="total-score low"><span class="score-val">3.3</span><span class="score-label">总分</span></div>
+    </div>
+</div>
+<div class="job-card" data-source="linkedin" data-score="3.3" data-salary-max="120" data-is-new="true">
+    <div class="rank">19</div>
+    <div class="job-info">
+        <div class="title-row">
+            <span class="job-title"><a href="https://au.linkedin.com/jobs/view/junior-data-scientist-at-rest-4363041329" target="_blank" rel="noopener">Junior Data Scientist</a></span>
+            <span class="company-name">Rest</span>
+        </div>
+        <div class="meta-row">
+            <span class="tag tag-location">📍 Sydney</span>
+            <span class="tag tag-salary">$90K-$120K</span>
+            <span class="tag tag-source">Linkedin</span>
+            <span class="tag tag-days">1天前</span>
+            <span class="tag tag-new">🆕 新增</span>
+            <span class="tag tag-visa">482→186</span>
+        </div>
+    </div>
+    <div class="job-scores">
+        <div class="score-pill"><span class="score-val score-3">3</span><span class="score-label">AI</span></div>
+        <div class="score-pill"><span class="score-val score-4">4</span><span class="score-label">担保</span></div>
+        <div class="score-pill"><span class="score-val score-4">4</span><span class="score-label">公司</span></div>
+        <div class="score-pill"><span class="score-val score-2">2</span><span class="score-label">薪资</span></div>
+        <div class="total-score low"><span class="score-val">3.3</span><span class="score-label">总分</span></div>
+    </div>
+</div>
+<div class="job-card" data-source="linkedin" data-score="3.3" data-salary-max="150" data-is-new="true">
+    <div class="rank">20</div>
+    <div class="job-info">
+        <div class="title-row">
+            <span class="job-title"><a href="https://au.linkedin.com/jobs/view/ai-software-engineer-at-elek-software-electrical-power-systems-design-4367779372" target="_blank" rel="noopener">AI Software Engineer</a></span>
+            <span class="company-name">ELEK Software</span>
+        </div>
+        <div class="meta-row">
+            <span class="tag tag-location">📍 Sydney</span>
+            <span class="tag tag-salary">$120K-$150K</span>
+            <span class="tag tag-source">Linkedin</span>
+            <span class="tag tag-days">1周前</span>
+            <span class="tag tag-new">🆕 新增</span>
+            <span class="tag tag-visa">482</span>
+        </div>
+    </div>
+    <div class="job-scores">
+        <div class="score-pill"><span class="score-val score-4">4</span><span class="score-label">AI</span></div>
+        <div class="score-pill"><span class="score-val score-3">3</span><span class="score-label">担保</span></div>
+        <div class="score-pill"><span class="score-val score-3">3</span><span class="score-label">公司</span></div>
+        <div class="score-pill"><span class="score-val score-3">3</span><span class="score-label">薪资</span></div>
+        <div class="total-score low"><span class="score-val">3.3</span><span class="score-label">总分</span></div>
+    </div>
+</div>
     </div>
 
     <!-- UOW SECTION -->
-    <h2 class="section-title">🏫 UOW 伍伦贡大学职位 <span class="badge badge-uow" id="uow-count-badge"><!--UOW_COUNT--></span></h2>
+    <h2 class="section-title">🏫 UOW 伍伦贡大学职位 <span class="badge badge-uow" id="uow-count-badge">暂无新 IT 职位</span></h2>
     <div id="uow-list">
-        <!--UOW_CARDS-->
+        <div class="uow-card"><div class="uow-title">暂无匹配的 IT/Engineering 职位</div><div class="meta-row"><span class="tag tag-source">UOW 招聘页面未发现新的 developer/engineer/cloud/data 相关职位</span></div></div>
     </div>
 
     <!-- TOP 5 RECOMMENDATIONS -->
     <h2 class="section-title">🏅 优先申请推荐</h2>
     <div class="top-picks" id="top-picks">
-        <!--TOP_PICKS-->
+        <div class="pick-card">
+    <div class="pick-rank">🥇</div>
+    <h3><a href="https://au.linkedin.com/jobs/view/machine-learning-engineer-at-rokt-4341139722" target="_blank">Machine Learning Engineer</a> · <span class="pick-company">Rokt</span> · Sydney</h3>
+    <div class="pick-meta">$170K-$185K · 2周前发布 · 总分 4.8</div>
+    <div class="pick-reason">澳洲独角兽 AdTech</div>
+    <a href="https://au.linkedin.com/jobs/view/machine-learning-engineer-at-rokt-4341139722" target="_blank" class="pick-action">⚡ 立即申请 →</a>
+</div>
+<div class="pick-card">
+    <div class="pick-rank">🥈</div>
+    <h3><a href="https://au.linkedin.com/jobs/view/machine-learning-engineer-agentic-ai-at-nearmap-4365383682" target="_blank">Machine Learning Engineer - Agentic AI</a> · <span class="pick-company">Nearmap</span> · Greater Sydney Area</h3>
+    <div class="pick-meta">$150K-$190K · 2周前发布 · 总分 4.8</div>
+    <div class="pick-reason">Agentic AI方向！与Albert的Agent经验高度匹配</div>
+    <a href="https://au.linkedin.com/jobs/view/machine-learning-engineer-agentic-ai-at-nearmap-4365383682" target="_blank" class="pick-action">⚡ 立即申请 →</a>
+</div>
+<div class="pick-card">
+    <div class="pick-rank">🥉</div>
+    <h3><a href="https://au.linkedin.com/jobs/view/artificial-intelligence-engineer-at-morgan-mckinley-4370613497" target="_blank">Artificial Intelligence Engineer</a> · <span class="pick-company">Morgan McKinley</span> · Sydney</h3>
+    <div class="pick-meta">$150K-$200K · 1天前发布 · 总分 4.5</div>
+    <div class="pick-reason">通过招聘中介，客户未公开（金融/咨询行业）</div>
+    <a href="https://au.linkedin.com/jobs/view/artificial-intelligence-engineer-at-morgan-mckinley-4370613497" target="_blank" class="pick-action">⚡ 立即申请 →</a>
+</div>
+<div class="pick-card">
+    <div class="pick-rank">🏅</div>
+    <h3><a href="https://au.linkedin.com/jobs/view/ai-engineer-ai-and-data-at-ey-4351142753" target="_blank">AI Engineer - AI and Data</a> · <span class="pick-company">EY</span> · Sydney</h3>
+    <div class="pick-meta">$130K-$170K · 2周前发布 · 总分 4.5</div>
+    <div class="pick-reason">Big4，sponsor历史数百人</div>
+    <a href="https://au.linkedin.com/jobs/view/ai-engineer-ai-and-data-at-ey-4351142753" target="_blank" class="pick-action">⚡ 立即申请 →</a>
+</div>
+<div class="pick-card">
+    <div class="pick-rank">🏅</div>
+    <h3><a href="https://au.linkedin.com/jobs/view/ai-engineer-at-ghd-4283016199" target="_blank">AI Engineer</a> · <span class="pick-company">GHD</span> · Sydney</h3>
+    <div class="pick-meta">$120K-$160K · 1周前发布 · 总分 4.5</div>
+    <div class="pick-reason">全球工程巨头10000+人，sponsor经验极丰富</div>
+    <a href="https://au.linkedin.com/jobs/view/ai-engineer-at-ghd-4283016199" target="_blank" class="pick-action">⚡ 立即申请 →</a>
+</div>
     </div>
 
     <!-- ACTION PLAN -->
     <h2 class="section-title">📋 行动计划</h2>
     <div class="action-grid" id="action-plan">
-        <!--ACTION_PLAN-->
+        <div class="action-card urgent">
+    <h4>🔴 今日必做</h4>
+    <ul>
+        <li><a href="https://au.linkedin.com/jobs/view/machine-learning-engineer-at-rokt-4341139722" target="_blank">Machine Learning Engineer @ Rokt</a> → 立即申请</li>
+        <li><a href="https://au.linkedin.com/jobs/view/machine-learning-engineer-agentic-ai-at-nearmap-4365383682" target="_blank">Machine Learning Engineer - Agentic AI @ Nearmap</a> → 立即申请</li>
+        <li><a href="https://au.linkedin.com/jobs/view/artificial-intelligence-engineer-at-morgan-mckinley-4370613497" target="_blank">Artificial Intelligence Engineer @ Morgan McKinley</a> → 联系recruiter</li>
+    </ul>
+</div>
+<div class="action-card week">
+    <h4>🟡 本周完成</h4>
+    <ul>
+        <li><a href="https://au.linkedin.com/jobs/view/ai-engineer-ai-and-data-at-ey-4351142753" target="_blank">AI Engineer - AI and Data @ EY</a></li>
+        <li><a href="https://au.linkedin.com/jobs/view/ai-engineer-at-ghd-4283016199" target="_blank">AI Engineer @ GHD</a></li>
+        <li><a href="https://au.linkedin.com/jobs/view/ai-engineer-at-salient-group-4370602862" target="_blank">AI Engineer @ Salient Group</a></li>
+        <li><a href="https://au.linkedin.com/jobs/view/ai-engineer-consulting-graduate-bcg-x-at-boston-consulting-group-bcg-4320969013" target="_blank">AI Engineer - Consulting (Graduate), BCG X @ Boston Consulting Group (BCG)</a></li>
+    </ul>
+</div>
+<div class="action-card ongoing">
+    <h4>🟢 持续优化</h4>
+    <ul>
+        <li>更新 LinkedIn headline: AI Engineer | LLM/Agent Systems</li>
+        <li>为每个申请定制 cover letter，突出 MedRAX/SemanticSearch</li>
+        <li>设置 LinkedIn "Open to Work" (仅 recruiters)</li>
+        <li>Seek 设置自动提醒: AI Engineer Sydney</li>
+    </ul>
+</div>
     </div>
 
     <!-- VISA PATHWAYS -->
@@ -534,7 +1072,7 @@
             <h4>⭐ 482 → 186 直接PR（最佳路径）</h4>
             <div class="visa-detail">时间线：2年482 → 申请186</div>
             <div class="visa-detail">适用：薪资≥$70K 的中长期STEM职位</div>
-            <div class="visa-companies" id="visa-186-companies">适用公司：<!--VISA_186_COMPANIES--></div>
+            <div class="visa-companies" id="visa-186-companies">适用公司：适用公司：Rokt, Nearmap, Morgan McKinley, EY, GHD, Salient Group, Boston Consulting Group (BCG), MYOB, Better Staff, CreditorWatch, DoorDash, Rest</div>
         </div>
         <div class="visa-card">
             <h4>💼 482 Specialist Skills</h4>
@@ -561,7 +1099,7 @@
 <div class="footer">
     <p>🤖 Generated by <a href="https://openclaw.ai" target="_blank">OpenClaw AI</a> · Data from LinkedIn & Seek & UOW Careers</p>
     <p>Albert Tsai · AI Engineer · 485 Visa → 2027-12-01</p>
-    <p style="margin-top: 8px;">下次更新：<!--NEXT_UPDATE--></p>
+    <p style="margin-top: 8px;">下次更新：2026-02-12 10:00 AEDT (自动)</p>
 </div>
 
 <script>
