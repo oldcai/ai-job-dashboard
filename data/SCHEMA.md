@@ -52,6 +52,7 @@
 - LinkedIn: `linkedin-<job_view_id>` (从 URL 提取)
 - Seek: `seek-<job_id>` (从 URL 提取)
 - UOW: `uow-<slug>` (从 URL 路径提取)
+- 482jobs: `482jobs-<slug>` (从 URL `/job/<slug>/` 提取)
 - 其他: `other-<md5(url)>`
 
 ### Status 状态
