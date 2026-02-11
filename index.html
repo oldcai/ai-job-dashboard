@@ -200,8 +200,10 @@
             font-size: 1rem;
             color: var(--text);
         }
-        .job-info .job-title a { color: var(--text); }
-        .job-info .job-title a:hover { color: var(--accent); }
+        .job-info .job-title a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(56,189,248,0.4); }
+        .job-info .job-title a:hover { color: #7dd3fc; text-decoration-color: var(--accent); }
+        .job-info .job-title a::after { content: ' ↗'; font-size: 0.8em; opacity: 0.6; }
+        .job-info .job-title a:hover::after { opacity: 1; }
         .job-info .company-name { color: var(--accent); font-weight: 600; font-size: 0.95rem; }
         .job-info .meta-row {
             display: flex;
@@ -295,8 +297,10 @@
         .pick-card:hover { border-color: var(--accent); }
         .pick-card .pick-rank { font-size: 1.5rem; margin-bottom: 8px; }
         .pick-card h3 { font-size: 1.05rem; margin-bottom: 4px; }
-        .pick-card h3 a { color: var(--text); }
-        .pick-card h3 a:hover { color: var(--accent); }
+        .pick-card h3 a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(56,189,248,0.4); }
+        .pick-card h3 a:hover { color: #7dd3fc; text-decoration-color: var(--accent); }
+        .pick-card h3 a::after { content: ' ↗'; font-size: 0.75em; opacity: 0.6; }
+        .pick-card h3 a:hover::after { opacity: 1; }
         .pick-card .pick-company { color: var(--accent); font-weight: 600; }
         .pick-card .pick-meta { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 8px; }
         .pick-card .pick-reason { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; }
