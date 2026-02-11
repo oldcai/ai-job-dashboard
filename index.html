@@ -6,561 +6,650 @@
     <title>AI Engineer Job Dashboard - Australia</title>
     <style>
         :root {
-            --bg: #0f172a;
-            --card: #1e293b;
-            --border: #334155;
+            --bg: #0a0f1a;
+            --bg-card: #111827;
+            --bg-card-hover: #1a2234;
+            --border: #1e293b;
+            --border-hover: #334155;
             --text: #e2e8f0;
             --text-muted: #94a3b8;
+            --text-dim: #64748b;
             --accent: #38bdf8;
+            --accent-dim: rgba(56,189,248,0.15);
             --green: #4ade80;
+            --green-dim: rgba(74,222,128,0.15);
             --yellow: #fbbf24;
+            --yellow-dim: rgba(251,191,36,0.15);
             --red: #f87171;
+            --red-dim: rgba(248,113,113,0.15);
             --purple: #a78bfa;
+            --purple-dim: rgba(167,139,250,0.15);
+            --orange: #fb923c;
+            --orange-dim: rgba(251,146,60,0.15);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
-        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
-        header {
-            text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
+        a:hover { color: #7dd3fc; text-decoration: underline; }
+
+        /* === HEADER === */
+        .header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
             border-bottom: 1px solid var(--border);
+            padding: 48px 24px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
-        header h1 { font-size: 2.2em; margin-bottom: 8px; }
-        header h1 span { color: var(--accent); }
-        header .subtitle { color: var(--text-muted); font-size: 1.1em; }
-        header .update-time {
-            margin-top: 12px;
-            color: var(--accent);
-            font-size: 0.9em;
-            background: rgba(56,189,248,0.1);
-            display: inline-block;
-            padding: 4px 16px;
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at 50% 0%, rgba(56,189,248,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            position: relative;
+        }
+        .header h1 .highlight { color: var(--accent); }
+        .header .subtitle {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-top: 6px;
+            position: relative;
+        }
+        .header .update-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 16px;
+            padding: 6px 16px;
+            background: var(--accent-dim);
+            border: 1px solid rgba(56,189,248,0.25);
             border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            position: relative;
         }
-        .market-flash {
-            background: linear-gradient(90deg, rgba(74,222,128,0.1), rgba(56,189,248,0.1));
-            border: 1px solid rgba(74,222,128,0.3);
-            border-radius: 12px;
-            padding: 16px 24px;
-            margin: 24px 0;
-            font-size: 1.05em;
+        .pulse { animation: pulse 2s ease-in-out infinite; }
+        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+        /* === KPI STRIP === */
+        .kpi-strip {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px;
+            padding: 24px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
-        .market-flash strong { color: var(--green); }
+        .kpi {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+        }
+        .kpi .value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .kpi .label {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* === CONTAINER === */
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 24px 40px; }
+
+        /* === SECTION === */
         .section-title {
-            font-size: 1.5em;
-            margin: 32px 0 16px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid var(--accent);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 36px 0 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
             display: flex;
             align-items: center;
             gap: 10px;
+            letter-spacing: -0.01em;
         }
-        .badge {
-            font-size: 0.65em;
+        .section-title .badge {
+            font-size: 0.7rem;
             padding: 3px 10px;
             border-radius: 12px;
             font-weight: 600;
         }
-        .badge-top { background: rgba(251,191,36,0.2); color: var(--yellow); }
-        .badge-extra { background: rgba(167,139,250,0.2); color: var(--purple); }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 16px 0;
-            font-size: 0.92em;
+        .badge-count { background: var(--accent-dim); color: var(--accent); }
+        .badge-top { background: var(--yellow-dim); color: var(--yellow); }
+        .badge-uow { background: var(--purple-dim); color: var(--purple); }
+
+        /* === FILTERS === */
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
         }
-        th {
-            background: var(--card);
+        .filter-btn {
+            padding: 6px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            border-color: var(--accent);
             color: var(--accent);
-            padding: 12px 10px;
-            text-align: left;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            border-bottom: 2px solid var(--accent);
+            background: var(--accent-dim);
         }
-        td {
-            padding: 10px;
-            border-bottom: 1px solid var(--border);
-            vertical-align: top;
+
+        /* === JOB CARDS (replaces table on mobile) === */
+        .job-list { display: flex; flex-direction: column; gap: 8px; }
+
+        .job-card {
+            display: grid;
+            grid-template-columns: 40px 1fr auto;
+            gap: 16px;
+            align-items: start;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px 20px;
+            transition: all 0.2s;
         }
-        tr:hover td { background: rgba(56,189,248,0.05); }
-        .company { font-weight: 700; color: var(--accent); }
-        .salary { color: var(--green); font-weight: 600; }
-        .score {
+        .job-card:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+        }
+        .job-card .rank {
+            font-size: 1.1rem;
             font-weight: 700;
-            font-size: 1.1em;
+            color: var(--text-dim);
             text-align: center;
+            padding-top: 2px;
+        }
+        .job-card .rank.top3 { color: var(--yellow); }
+
+        .job-info { min-width: 0; }
+        .job-info .title-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+        .job-info .job-title {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text);
+        }
+        .job-info .job-title a { color: var(--text); }
+        .job-info .job-title a:hover { color: var(--accent); }
+        .job-info .company-name { color: var(--accent); font-weight: 600; font-size: 0.95rem; }
+        .job-info .meta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 6px;
+            align-items: center;
+        }
+
+        .job-scores {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        .score-pill {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 6px 8px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.03);
+            min-width: 48px;
+        }
+        .score-pill .score-val {
+            font-size: 1rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+        .score-pill .score-label {
+            font-size: 0.6rem;
+            color: var(--text-dim);
+            margin-top: 3px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
         }
         .score-5 { color: var(--green); }
         .score-4 { color: var(--yellow); }
         .score-3 { color: var(--text-muted); }
-        .match-high { color: var(--green); }
-        .match-mid { color: var(--yellow); }
-        .match-low { color: var(--red); }
-        .stars { color: var(--yellow); letter-spacing: 1px; }
+        .score-2 { color: var(--orange); }
+        .score-1 { color: var(--red); }
+
+        .total-score {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 8px 12px;
+            border-radius: 10px;
+            min-width: 56px;
+        }
+        .total-score .score-val { font-size: 1.4rem; font-weight: 800; }
+        .total-score .score-label { font-size: 0.65rem; color: var(--text-dim); margin-top: 2px; }
+        .total-score.high { background: var(--green-dim); }
+        .total-score.mid { background: var(--yellow-dim); }
+        .total-score.low { background: var(--red-dim); }
+
+        /* === TAGS === */
         .tag {
-            display: inline-block;
-            font-size: 0.78em;
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.75rem;
             padding: 2px 8px;
             border-radius: 6px;
-            margin: 1px 2px;
+            font-weight: 500;
+            white-space: nowrap;
         }
-        .tag-ai { background: rgba(56,189,248,0.2); color: var(--accent); }
-        .tag-sponsor { background: rgba(74,222,128,0.2); color: var(--green); }
-        .tag-visa { background: rgba(167,139,250,0.2); color: var(--purple); }
-        .tag-urgent { background: rgba(248,113,113,0.2); color: var(--red); }
-        .tag-new { background: rgba(251,191,36,0.2); color: var(--yellow); }
+        .tag-location { background: rgba(255,255,255,0.06); color: var(--text-muted); }
+        .tag-salary { background: var(--green-dim); color: var(--green); font-weight: 600; }
+        .tag-source { background: rgba(255,255,255,0.06); color: var(--text-dim); }
+        .tag-new { background: var(--yellow-dim); color: var(--yellow); }
+        .tag-hot { background: var(--red-dim); color: var(--red); }
+        .tag-visa { background: var(--purple-dim); color: var(--purple); }
+        .tag-sponsor { background: var(--green-dim); color: var(--green); }
+        .tag-days { background: rgba(255,255,255,0.04); color: var(--text-dim); }
 
-        .top5-card {
-            background: var(--card);
+        /* === TOP PICKS === */
+        .top-picks {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+        .pick-card {
+            background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 20px 24px;
-            margin: 16px 0;
+            border-left: 3px solid var(--accent);
+            border-radius: 10px;
+            padding: 20px;
             transition: border-color 0.2s;
         }
-        .top5-card:hover { border-color: var(--accent); }
-        .top5-card .rank {
-            font-size: 1.8em;
-            float: left;
-            margin-right: 16px;
-            line-height: 1;
-        }
-        .top5-card h3 { font-size: 1.15em; margin-bottom: 6px; }
-        .top5-card h3 .company { margin-left: 6px; }
-        .top5-card .meta { color: var(--text-muted); font-size: 0.9em; margin-bottom: 8px; }
-        .top5-card .reason { font-size: 0.95em; }
-        .top5-card .action {
-            margin-top: 10px;
+        .pick-card:hover { border-color: var(--accent); }
+        .pick-card .pick-rank { font-size: 1.5rem; margin-bottom: 8px; }
+        .pick-card h3 { font-size: 1.05rem; margin-bottom: 4px; }
+        .pick-card h3 a { color: var(--text); }
+        .pick-card h3 a:hover { color: var(--accent); }
+        .pick-card .pick-company { color: var(--accent); font-weight: 600; }
+        .pick-card .pick-meta { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 8px; }
+        .pick-card .pick-reason { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; }
+        .pick-card .pick-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            background: var(--accent-dim);
             color: var(--accent);
+            font-size: 0.85rem;
             font-weight: 600;
-            font-size: 0.9em;
+            transition: background 0.2s;
         }
+        .pick-card .pick-action:hover { background: rgba(56,189,248,0.25); text-decoration: none; }
 
-        .action-plan {
+        /* === ACTION PLAN === */
+        .action-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 16px;
-            margin: 16px 0;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
         }
         .action-card {
-            background: var(--card);
-            border-radius: 12px;
+            background: var(--bg-card);
+            border-radius: 10px;
             padding: 20px;
-            border-left: 4px solid;
+            border-left: 3px solid;
         }
         .action-card.urgent { border-left-color: var(--red); }
         .action-card.week { border-left-color: var(--yellow); }
         .action-card.ongoing { border-left-color: var(--green); }
-        .action-card h4 { margin-bottom: 10px; font-size: 1.05em; }
+        .action-card h4 { margin-bottom: 12px; font-size: 1rem; }
         .action-card ul { list-style: none; }
-        .action-card li { padding: 4px 0; font-size: 0.92em; }
+        .action-card li {
+            padding: 5px 0;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+        }
+        .action-card li:last-child { border-bottom: none; }
         .action-card li::before { content: "→ "; color: var(--accent); }
+        .action-card li a { color: var(--text); }
+        .action-card li a:hover { color: var(--accent); }
 
-        .visa-table td, .visa-table th { padding: 10px 16px; }
+        /* === VISA TABLE === */
+        .visa-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+        .visa-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .visa-card h4 { font-size: 1rem; margin-bottom: 8px; }
+        .visa-card .visa-detail { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 4px; }
+        .visa-card .visa-companies { font-size: 0.82rem; color: var(--text-dim); margin-top: 8px; }
 
+        /* === ALERT BOX === */
+        .alert-box {
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin: 20px 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .alert-info {
+            background: linear-gradient(90deg, var(--green-dim), var(--accent-dim));
+            border: 1px solid rgba(74,222,128,0.2);
+        }
+        .alert-warning {
+            background: linear-gradient(90deg, var(--red-dim), var(--orange-dim));
+            border: 1px solid rgba(248,113,113,0.2);
+        }
+        .alert-box strong { color: var(--green); }
+        .alert-warning strong { color: var(--red); }
+
+        /* === FOOTER === */
         .footer {
             text-align: center;
             padding: 40px 20px;
-            color: var(--text-muted);
-            font-size: 0.85em;
+            color: var(--text-dim);
+            font-size: 0.8rem;
             border-top: 1px solid var(--border);
-            margin-top: 40px;
+            margin-top: 48px;
+        }
+        .footer a { color: var(--text-muted); }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            .header { padding: 32px 16px 28px; }
+            .header h1 { font-size: 1.5rem; }
+            .kpi-strip { padding: 16px; gap: 8px; grid-template-columns: repeat(2, 1fr); }
+            .container { padding: 0 16px 32px; }
+            .job-card {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            .job-card .rank { display: none; }
+            .job-scores { flex-wrap: wrap; }
+            .score-pill { min-width: 40px; }
+            .top-picks { grid-template-columns: 1fr; }
+            .action-grid { grid-template-columns: 1fr; }
+            .visa-cards { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            .kpi-strip { grid-template-columns: repeat(2, 1fr); }
+            .kpi .value { font-size: 1.4rem; }
+            .filters { gap: 6px; }
+            .filter-btn { padding: 5px 10px; font-size: 0.78rem; }
         }
 
-        @media (max-width: 768px) {
-            .container { padding: 10px; }
-            header h1 { font-size: 1.5em; }
-            table { font-size: 0.82em; }
-            th, td { padding: 6px; }
-            .top5-card .rank { font-size: 1.4em; }
+        /* === SEARCH === */
+        .search-box {
+            width: 100%;
+            padding: 10px 16px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text);
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            outline: none;
+            transition: border-color 0.2s;
         }
+        .search-box:focus { border-color: var(--accent); }
+        .search-box::placeholder { color: var(--text-dim); }
+
+        .hidden { display: none !important; }
+
+        /* === UOW SECTION === */
+        .uow-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin-bottom: 8px;
+            transition: border-color 0.2s;
+        }
+        .uow-card:hover { border-color: var(--border-hover); }
+        .uow-card .uow-title { font-weight: 700; font-size: 1rem; margin-bottom: 6px; }
+        .uow-card .uow-title a { color: var(--text); }
+        .uow-card .uow-title a:hover { color: var(--accent); }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>🤖 <span>AI Engineer</span> Job Dashboard</h1>
+<!-- HEADER -->
+<div class="header">
+    <h1>🤖 <span class="highlight">AI Engineer</span> Job Dashboard</h1>
     <div class="subtitle">Australia · Visa Sponsorship Focus · Albert Tsai</div>
-    <div class="update-time">🕐 Last Updated: 2026-02-11 13:44 AEDT</div>
-</header>
+    <div class="update-badge">
+        <span class="pulse">●</span>
+        <span id="update-time">Last Updated: <!--TIMESTAMP--></span>
+    </div>
+</div>
+
+<!-- KPI STRIP -->
+<div class="kpi-strip">
+    <div class="kpi">
+        <div class="value" style="color: var(--accent);" id="kpi-total"><!--KPI_TOTAL--></div>
+        <div class="label">职位总数</div>
+    </div>
+    <div class="kpi">
+        <div class="value" style="color: var(--green);" id="kpi-new"><!--KPI_NEW--></div>
+        <div class="label">今日新增</div>
+    </div>
+    <div class="kpi">
+        <div class="value" style="color: var(--yellow);" id="kpi-avg-score"><!--KPI_AVG--></div>
+        <div class="label">平均评分</div>
+    </div>
+    <div class="kpi">
+        <div class="value" style="color: var(--purple);" id="kpi-sponsor"><!--KPI_SPONSOR--></div>
+        <div class="label">可Sponsor</div>
+    </div>
+    <div class="kpi">
+        <div class="value" style="color: var(--orange);" id="kpi-high-salary"><!--KPI_HIGH--></div>
+        <div class="label">$150K+</div>
+    </div>
+</div>
 
 <div class="container">
 
-    <div class="market-flash">
-        📊 <strong>市场快讯：</strong> LinkedIn「Jobs on the Rise 2026」报告 — <strong>AI Engineer 是澳洲增长最快的职位</strong>，增幅 150%。当前市场需求极其旺盛。
+    <!-- MARKET FLASH -->
+    <div class="alert-box alert-info" id="market-flash">
+        📊 <strong>市场快讯：</strong><!--MARKET_FLASH-->
     </div>
 
-    <!-- TOP 10 TABLE -->
-    <h2 class="section-title">🏆 本周精选职位 Top 10 <span class="badge badge-top">按综合评分排序</span></h2>
-    <div style="overflow-x:auto;">
-    <table>
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>职位</th>
-                <th>公司</th>
-                <th>地点</th>
-                <th>薪资 (AUD)</th>
-                <th>来源</th>
-                <th>发布</th>
-                <th>AI相关</th>
-                <th>Sponsor</th>
-                <th>公司面</th>
-                <th>薪资✓</th>
-                <th>签证路径</th>
-                <th>总分</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td><strong>AI Engineer</strong></td>
-                <td class="company">Optiver</td>
-                <td>Sydney</td>
-                <td class="salary">$180K-$250K+</td>
-                <td>LinkedIn</td>
-                <td><span class="tag tag-new">5天前</span></td>
-                <td class="stars">★★★★★</td>
-                <td class="stars">★★★★★</td>
-                <td class="stars">★★★★★</td>
-                <td class="stars">★★★★★</td>
-                <td><span class="tag tag-visa">482→186</span></td>
-                <td class="score score-5">5.0</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td><strong>ML Engineer</strong></td>
-                <td class="company">Rokt</td>
-                <td>Sydney</td>
-                <td class="salary">$170K-$185K</td>
-                <td>LinkedIn</td>
-                <td>2周前</td>
-                <td class="stars">★★★★★</td>
-                <td class="stars">★★★★★</td>
-                <td class="stars">★★★★☆</td>
-                <td class="stars">★★★★★</td>
-                <td><span class="tag tag-visa">482→186</span></td>
-                <td class="score score-5">4.8</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td><strong>AI Engineer - AI and Data</strong></td>
-                <td class="company">EY</td>
-                <td>Sydney</td>
-                <td class="salary">$130K-$170K</td>
-                <td>LinkedIn</td>
-                <td>2周前</td>
-                <td class="stars">★★★★☆</td>
-                <td class="stars">★★★★★</td>
-                <td class="stars">★★★★★</td>
-                <td class="stars">★★★★☆</td>
-                <td><span class="tag tag-visa">482→186 直接PR</span></td>
-                <td class="score score-4">4.6</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td><strong>AI Engineer</strong></td>
-                <td class="company">Nine</td>
-                <td>North Sydney</td>
-                <td class="salary">$130K-$160K</td>
-                <td>LinkedIn</td>
-                <td>2周前</td>
-                <td class="stars">★★★★☆</td>
-                <td class="stars">★★★★★</td>
-                <td class="stars">★★★★★</td>
-                <td class="stars">★★★★☆</td>
-                <td><span class="tag tag-visa">482→186</span></td>
-                <td class="score score-4">4.6</td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td><strong>AI Engineer</strong></td>
-                <td class="company">GHD</td>
-                <td>Sydney</td>
-                <td class="salary">$120K-$160K</td>
-                <td>LinkedIn</td>
-                <td>1周前</td>
-                <td class="stars">★★★★☆</td>
-                <td class="stars">★★★★★</td>
-                <td class="stars">★★★★★</td>
-                <td class="stars">★★★★☆</td>
-                <td><span class="tag tag-visa">482→186</span></td>
-                <td class="score score-4">4.6</td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td><strong>AI Engineer (via Morgan McKinley)</strong></td>
-                <td class="company">未公开 (金融/咨询)</td>
-                <td>Sydney</td>
-                <td class="salary">$150K-$200K</td>
-                <td>LinkedIn</td>
-                <td><span class="tag tag-new">21hr前</span></td>
-                <td class="stars">★★★★★</td>
-                <td class="stars">★★★★☆</td>
-                <td class="stars">★★★★☆</td>
-                <td class="stars">★★★★★</td>
-                <td><span class="tag tag-visa">482→186</span></td>
-                <td class="score score-4">4.4</td>
-            </tr>
-            <tr>
-                <td>7</td>
-                <td><strong>AI Engineer</strong></td>
-                <td class="company">Salient Group</td>
-                <td>Sydney</td>
-                <td class="salary">$170K-$230K</td>
-                <td>LinkedIn</td>
-                <td><span class="tag tag-new">1天前</span></td>
-                <td class="stars">★★★★★</td>
-                <td class="stars">★★★★☆</td>
-                <td class="stars">★★★☆☆</td>
-                <td class="stars">★★★★★</td>
-                <td><span class="tag tag-visa">482→186</span></td>
-                <td class="score score-4">4.2</td>
-            </tr>
-            <tr>
-                <td>8</td>
-                <td><strong>AI Engineer (via Better Staff)</strong></td>
-                <td class="company">未公开客户</td>
-                <td>Sydney</td>
-                <td class="salary">$150K-$200K</td>
-                <td>LinkedIn</td>
-                <td>2周前</td>
-                <td class="stars">★★★★★</td>
-                <td class="stars">★★★★☆</td>
-                <td class="stars">★★★☆☆</td>
-                <td class="stars">★★★★★</td>
-                <td><span class="tag tag-visa">482→186</span></td>
-                <td class="score score-4">4.2</td>
-            </tr>
-            <tr>
-                <td>9</td>
-                <td><strong>ML & AI Engineer</strong></td>
-                <td class="company">CreditorWatch</td>
-                <td>Sydney</td>
-                <td class="salary">$130K-$160K</td>
-                <td>LinkedIn</td>
-                <td>1周前</td>
-                <td class="stars">★★★★★</td>
-                <td class="stars">★★★★☆</td>
-                <td class="stars">★★★★☆</td>
-                <td class="stars">★★★★☆</td>
-                <td><span class="tag tag-visa">482→186</span></td>
-                <td class="score score-4">4.2</td>
-            </tr>
-            <tr>
-                <td>10</td>
-                <td><strong>AI Engineer</strong></td>
-                <td class="company">Protecht</td>
-                <td>Sydney</td>
-                <td class="salary">$130K-$160K</td>
-                <td>LinkedIn</td>
-                <td>6天前</td>
-                <td class="stars">★★★★★</td>
-                <td class="stars">★★★☆☆</td>
-                <td class="stars">★★★★☆</td>
-                <td class="stars">★★★★☆</td>
-                <td><span class="tag tag-visa">482</span></td>
-                <td class="score score-3">3.8</td>
-            </tr>
-        </tbody>
-    </table>
+    <!-- SEARCH + FILTER -->
+    <h2 class="section-title">🏆 职位列表 <span class="badge badge-count" id="job-count-badge"><!--JOB_COUNT--> 个职位</span></h2>
+    <input type="text" class="search-box" placeholder="🔍 搜索职位、公司、地点..." oninput="filterJobs(this.value)" id="search-input">
+    <div class="filters" id="filter-bar">
+        <button class="filter-btn active" onclick="filterSource('all', this)">全部</button>
+        <button class="filter-btn" onclick="filterSource('linkedin', this)">LinkedIn</button>
+        <button class="filter-btn" onclick="filterSource('seek', this)">Seek</button>
+        <button class="filter-btn" onclick="filterSource('uow', this)">UOW</button>
+        <button class="filter-btn" onclick="filterScore(4.5, this)">⭐ 4.5+</button>
+        <button class="filter-btn" onclick="filterSalary(150, this)">💰 $150K+</button>
+        <button class="filter-btn" onclick="filterNew(this)">🆕 新增</button>
     </div>
 
-    <!-- EXTRA TABLE -->
-    <h2 class="section-title">📌 额外值得关注 <span class="badge badge-extra">特色/较新</span></h2>
-    <div style="overflow-x:auto;">
-    <table>
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>职位</th>
-                <th>公司</th>
-                <th>地点</th>
-                <th>薪资</th>
-                <th>备注</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr><td>11</td><td>ML Engineer</td><td class="company">MYOB</td><td>Sydney</td><td class="salary">$130K-$160K</td><td>澳洲老牌SaaS, 已知sponsor</td></tr>
-            <tr><td>12</td><td>Solution Architect, AI</td><td class="company">Cloudflare</td><td>Sydney</td><td class="salary">$160K-$200K</td><td>偏SA不纯AI，但大厂sponsor稳</td></tr>
-            <tr><td>13</td><td>AI Engineer (Graduate)</td><td class="company">BCG X</td><td>Sydney</td><td>$100K-$130K</td><td>薪资偏低但PR路径极好</td></tr>
-            <tr><td>14</td><td>AI Engineer</td><td class="company">Leonardo.Ai</td><td>Sydney</td><td class="salary">$140K-$180K</td><td>🔥纯GenAI公司！可能已关</td></tr>
-            <tr><td>15</td><td>AI Software Engineer</td><td class="company">ELEK Software</td><td>Sydney</td><td class="salary">$120K-$150K</td><td>电力系统+AI交叉</td></tr>
-            <tr><td>16</td><td>ML Engineer</td><td class="company">Pluralis Research</td><td>Melbourne/Sydney</td><td>未公开</td><td>AI研究公司</td></tr>
-            <tr><td>17</td><td>AI Engineer</td><td class="company">PwC Australia</td><td>Melbourne</td><td class="salary">$130K-$170K</td><td>Big4, 强sponsor</td></tr>
-            <tr><td>18</td><td>Data Scientist</td><td class="company">DoorDash</td><td>Sydney</td><td class="salary">$140K-$180K</td><td>美企sponsor稳</td></tr>
-        </tbody>
-    </table>
+    <!-- JOB LIST (populated by template data) -->
+    <div class="job-list" id="job-list">
+        <!--JOB_CARDS-->
     </div>
 
     <!-- UOW SECTION -->
-    <h2 class="section-title">🏫 UOW 伍伦贡大学职位</h2>
-    <div style="overflow-x:auto;">
-    <table>
-        <thead>
-            <tr>
-                <th>职位</th>
-                <th>部门</th>
-                <th>薪资</th>
-                <th>合同</th>
-                <th>截止日期</th>
-                <th>匹配度</th>
-                <th>Sponsorship</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><strong>⭐ Senior Cloud Engineer</strong></td>
-                <td>IMTS</td>
-                <td class="salary">$120K-$150K + 17% super</td>
-                <td>永久全职</td>
-                <td><span class="tag tag-urgent">⚠️ 2月16日</span></td>
-                <td class="match-high">🟢 高</td>
-                <td class="match-low">❌ 不提供</td>
-            </tr>
-            <tr>
-                <td>Data Scientist (ePPOC)</td>
-                <td>AHOC</td>
-                <td class="salary">$120K-$150K + 17% super</td>
-                <td>Fixed Term</td>
-                <td><span class="tag tag-urgent">⚠️ 2月15日</span></td>
-                <td class="match-mid">🟡 中</td>
-                <td class="match-low">❌ 不提供</td>
-            </tr>
-        </tbody>
-    </table>
+    <h2 class="section-title">🏫 UOW 伍伦贡大学职位 <span class="badge badge-uow" id="uow-count-badge"><!--UOW_COUNT--></span></h2>
+    <div id="uow-list">
+        <!--UOW_CARDS-->
     </div>
 
     <!-- TOP 5 RECOMMENDATIONS -->
-    <h2 class="section-title">🏅 Top 5 优先申请推荐</h2>
-
-    <div class="top5-card">
-        <div class="rank">🥇</div>
-        <h3>AI Engineer · <span class="company">Optiver</span> · Sydney</h3>
-        <div class="meta">$180K-$250K+ · 全球顶级量化交易 · 5天前发布</div>
-        <div class="reason">薪资天花板最高，荷兰总部+全球化运营，有极强的 sponsor 传统。186 直接 PR 路径明确。你的 AI Agent/LLM 经验可展示系统设计能力。</div>
-        <div class="action">⚡ 立即申请 LinkedIn + Optiver Careers 官网</div>
-    </div>
-
-    <div class="top5-card">
-        <div class="rank">🥈</div>
-        <h3>ML Engineer · <span class="company">Rokt</span> · Sydney</h3>
-        <div class="meta">$170K-$185K · 澳洲独角兽 AdTech · 2周前发布</div>
-        <div class="reason">明确薪资 $170K+，已知频繁 sponsor。推荐算法/ML 模型，核心 AI 方向。SemanticSearch 项目直接相关。</div>
-        <div class="action">⚡ 立即申请 + 准备 ML System Design</div>
-    </div>
-
-    <div class="top5-card">
-        <div class="rank">🥉</div>
-        <h3>AI Engineer - AI and Data · <span class="company">EY</span> · Sydney</h3>
-        <div class="meta">$130K-$170K · Big4 · 2周前发布</div>
-        <div class="reason">Big4，sponsor 历史数百人，186 直接 PR 路径最稳。Enterprise AI/GenAI consulting。MedRAX 项目展示 applied AI 能力。</div>
-        <div class="action">⚡ EY 官网 + LinkedIn 双渠道申请</div>
-    </div>
-
-    <div class="top5-card">
-        <div class="rank">🏅</div>
-        <h3>AI Engineer · <span class="company">Nine</span> · North Sydney</h3>
-        <div class="meta">$130K-$160K · ASX上市媒体巨头 · 2周前发布</div>
-        <div class="reason">澳洲最大媒体公司之一，sponsor 历史丰富，186 路径清晰。Media AI/推荐/内容理解方向。</div>
-        <div class="action">⚡ LinkedIn 申请 + Nine Careers 官网</div>
-    </div>
-
-    <div class="top5-card">
-        <div class="rank">🏅</div>
-        <h3>AI Engineer · <span class="company">GHD</span> · Sydney</h3>
-        <div class="meta">$120K-$160K · 全球工程巨头 10,000+人 · 1周前发布</div>
-        <div class="reason">Sponsor 经验极其丰富，稳定性满分。工程领域 AI 应用。</div>
-        <div class="action">⚡ LinkedIn + GHD 官网申请</div>
+    <h2 class="section-title">🏅 优先申请推荐</h2>
+    <div class="top-picks" id="top-picks">
+        <!--TOP_PICKS-->
     </div>
 
     <!-- ACTION PLAN -->
     <h2 class="section-title">📋 行动计划</h2>
-    <div class="action-plan">
-        <div class="action-card urgent">
-            <h4>🔴 今日必做 (2/11)</h4>
-            <ul>
-                <li>Optiver AI Engineer → LinkedIn + 官网投递</li>
-                <li>Salient Group AI Engineer → 联系 recruiter Adam Li</li>
-                <li>Morgan McKinley AI Engineer → 联系 recruiter 获取客户信息</li>
-            </ul>
-        </div>
-        <div class="action-card week">
-            <h4>🟡 本周完成 (2/11-14)</h4>
-            <ul>
-                <li>Rokt ML Engineer → 申请 + 准备面试</li>
-                <li>EY AI Engineer → 官网 + LinkedIn</li>
-                <li>Nine AI Engineer → LinkedIn</li>
-                <li>GHD AI Engineer → LinkedIn + 官网</li>
-                <li>CreditorWatch ML & AI Engineer</li>
-                <li>Protecht AI Engineer</li>
-                <li>Leonardo.Ai → 确认是否仍在招</li>
-            </ul>
-        </div>
-        <div class="action-card ongoing">
-            <h4>🟢 持续优化</h4>
-            <ul>
-                <li>更新 LinkedIn headline: AI Engineer | LLM/Agent Systems</li>
-                <li>为每个申请定制 cover letter</li>
-                <li>设置 LinkedIn "Open to Work" (仅 recruiters)</li>
-                <li>Seek 设置自动提醒</li>
-            </ul>
-        </div>
+    <div class="action-grid" id="action-plan">
+        <!--ACTION_PLAN-->
     </div>
 
     <!-- VISA PATHWAYS -->
     <h2 class="section-title">🔑 签证路径分析</h2>
-    <div style="overflow-x:auto;">
-    <table class="visa-table">
-        <thead>
-            <tr>
-                <th>路径</th>
-                <th>适用公司</th>
-                <th>时间线</th>
-                <th>优先级</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><strong>482 → 186 直接PR</strong></td>
-                <td>Optiver, EY, Nine, GHD, Rokt, MYOB</td>
-                <td>2年482 → 申请186 (2028)</td>
-                <td class="stars">★★★★★ 最佳</td>
-            </tr>
-            <tr>
-                <td><strong>482 Specialist Skills</strong></td>
-                <td>薪资≥$135K 的职位</td>
-                <td>直接4年签 → 186</td>
-                <td class="stars">★★★★★ 大多数目标薪资达标</td>
-            </tr>
-            <tr>
-                <td><strong>494 Regional</strong></td>
-                <td>Wollongong 机会</td>
-                <td>3年 → 191 PR</td>
-                <td class="stars">★★★☆☆ 备选</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="visa-cards">
+        <div class="visa-card">
+            <h4>⭐ 482 → 186 直接PR（最佳路径）</h4>
+            <div class="visa-detail">时间线：2年482 → 申请186</div>
+            <div class="visa-detail">适用：薪资≥$70K 的中长期STEM职位</div>
+            <div class="visa-companies" id="visa-186-companies">适用公司：<!--VISA_186_COMPANIES--></div>
+        </div>
+        <div class="visa-card">
+            <h4>💼 482 Specialist Skills</h4>
+            <div class="visa-detail">时间线：直接4年签 → 186</div>
+            <div class="visa-detail">要求：年薪≥$135K</div>
+            <div class="visa-companies">大多数目标薪资范围达标</div>
+        </div>
+        <div class="visa-card">
+            <h4>🌏 494 Regional</h4>
+            <div class="visa-detail">时间线：3年 → 191 PR</div>
+            <div class="visa-detail">适用：Wollongong 地区机会</div>
+            <div class="visa-companies">备选路径 · 适合UOW等regional雇主</div>
+        </div>
     </div>
-    <div class="market-flash" style="border-color: rgba(248,113,113,0.3); background: linear-gradient(90deg, rgba(248,113,113,0.1), rgba(251,191,36,0.1));">
-        ⏰ <strong>时间紧迫性：</strong> 485签证到期 <strong>2027-12-01</strong> → 还有约 22 个月。理想时间线：2026 Q1 拿 offer → Q2 启动 482 → 2028 申请 186。<strong>最迟需在 2027 年中之前启动 482 申请。</strong>
+
+    <!-- DEADLINE WARNING -->
+    <div class="alert-box alert-warning" id="visa-deadline">
+        ⏰ <strong>时间紧迫：</strong>485签证到期 <strong>2027-12-01</strong> → 还有约 <!--MONTHS_LEFT--> 个月。理想时间线：2026 Q1 拿 offer → Q2 启动 482 → 2028 申请 186。<strong>最迟需在 2027 年中之前启动 482 申请。</strong>
     </div>
 
 </div>
 
+<!-- FOOTER -->
 <div class="footer">
-    <p>🤖 Generated by OpenClaw AI · Data from LinkedIn & Seek & UOW Careers</p>
+    <p>🤖 Generated by <a href="https://openclaw.ai" target="_blank">OpenClaw AI</a> · Data from LinkedIn & Seek & UOW Careers</p>
     <p>Albert Tsai · AI Engineer · 485 Visa → 2027-12-01</p>
-    <p style="margin-top: 8px;">下次更新：2026-02-12 10:00 AEDT (自动)</p>
+    <p style="margin-top: 8px;">下次更新：<!--NEXT_UPDATE--></p>
 </div>
+
+<script>
+// === FILTER / SEARCH LOGIC ===
+function filterJobs(query) {
+    const cards = document.querySelectorAll('#job-list .job-card');
+    const q = query.toLowerCase();
+    let visible = 0;
+    cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        const show = !q || text.includes(q);
+        card.classList.toggle('hidden', !show);
+        if (show) visible++;
+    });
+    document.getElementById('job-count-badge').textContent = visible + ' 个职位';
+}
+
+function filterSource(source, btn) {
+    resetFilters(btn);
+    const cards = document.querySelectorAll('#job-list .job-card');
+    let visible = 0;
+    cards.forEach(card => {
+        if (source === 'all') {
+            card.classList.remove('hidden');
+            visible++;
+        } else {
+            const s = (card.dataset.source || '').toLowerCase();
+            const show = s.includes(source);
+            card.classList.toggle('hidden', !show);
+            if (show) visible++;
+        }
+    });
+    document.getElementById('job-count-badge').textContent = visible + ' 个职位';
+}
+
+function filterScore(min, btn) {
+    resetFilters(btn);
+    const cards = document.querySelectorAll('#job-list .job-card');
+    let visible = 0;
+    cards.forEach(card => {
+        const score = parseFloat(card.dataset.score || 0);
+        const show = score >= min;
+        card.classList.toggle('hidden', !show);
+        if (show) visible++;
+    });
+    document.getElementById('job-count-badge').textContent = visible + ' 个职位';
+}
+
+function filterSalary(min, btn) {
+    resetFilters(btn);
+    const cards = document.querySelectorAll('#job-list .job-card');
+    let visible = 0;
+    cards.forEach(card => {
+        const salary = parseInt(card.dataset.salaryMax || 0);
+        const show = salary >= min;
+        card.classList.toggle('hidden', !show);
+        if (show) visible++;
+    });
+    document.getElementById('job-count-badge').textContent = visible + ' 个职位';
+}
+
+function filterNew(btn) {
+    resetFilters(btn);
+    const cards = document.querySelectorAll('#job-list .job-card');
+    let visible = 0;
+    cards.forEach(card => {
+        const isNew = card.dataset.isNew === 'true';
+        card.classList.toggle('hidden', !isNew);
+        if (isNew) visible++;
+    });
+    document.getElementById('job-count-badge').textContent = visible + ' 个职位';
+}
+
+function resetFilters(activeBtn) {
+    document.getElementById('search-input').value = '';
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    if (activeBtn) activeBtn.classList.add('active');
+}
+
+// Calculate months left to visa deadline
+(function() {
+    const deadline = new Date('2027-12-01');
+    const now = new Date();
+    const months = Math.round((deadline - now) / (1000 * 60 * 60 * 24 * 30));
+    const el = document.getElementById('visa-deadline');
+    if (el) el.innerHTML = el.innerHTML.replace('<!--MONTHS_LEFT-->', months);
+})();
+</script>
 
 </body>
 </html>
